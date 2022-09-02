@@ -54,12 +54,18 @@
 
 更新日志：小程序的版本说明
 
-# 功能截图
+# 部分功能截图
 
-![](https://www.ossbar.com/codeshop/uploads/3121bde9-d404-4112-a385-2a7d84f1b525.png "登录界面")
+![](https://www.ossbar.com/codeshop/uploads/5cb65b84-da74-4d65-9c49-423602d2ba0c.png "我的学习")
 
-![](https://www.ossbar.com/codeshop/uploads/4a20f7de-5cb9-452f-b762-6357f0ea491d.png "内容编排")
+![](https://www.ossbar.com/codeshop/uploads/be98ae68-e705-420a-b06a-36c7fe6602ac.jpg "课堂")
 
-![](https://www.ossbar.com/codeshop/uploads/fe19d407-7b17-40bb-8d68-6735d17c04b9.png "合作企业")
+![](https://www.ossbar.com/codeshop/uploads/2c218fb5-a4fc-41f3-850c-b6dc7f73c9fa.jpg "加入课堂")
+
+![](https://www.ossbar.com/codeshop/uploads/d5131fd4-feb9-4545-a8c8-c57c545071dd.jpg "课堂活动")
+
+![](https://www.ossbar.com/codeshop/uploads/ac0ce91b-f7d5-49c2-9cfb-9e5197044a64.jpg "直播课堂")
+
+![](https://www.ossbar.com/codeshop/uploads/1c759126-bd20-41b1-8f36-85d2d7770af5.png "我的")
 
 
