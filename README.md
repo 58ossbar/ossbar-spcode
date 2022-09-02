@@ -56,15 +56,15 @@
 
 # 部分功能截图
 
-![](https://www.ossbar.com/codeshop/uploads/5cb65b84-da74-4d65-9c49-423602d2ba0c.png "我的学习")
+<img src="https://www.ossbar.com/codeshop/uploads/76dab7fe-3852-4a8c-a9f3-c693ba5d3f12.jpg" width="46%" heigth="50%"/>
 
-![](https://www.ossbar.com/codeshop/uploads/be98ae68-e705-420a-b06a-36c7fe6602ac.jpg "课堂")
+<img src="https://www.ossbar.com/codeshop/uploads/be98ae68-e705-420a-b06a-36c7fe6602ac.jpg" width="46%" heigth="50%"/>
 
-![](https://www.ossbar.com/codeshop/uploads/2c218fb5-a4fc-41f3-850c-b6dc7f73c9fa.jpg "加入课堂")
+<img src="https://www.ossbar.com/codeshop/uploads/2c218fb5-a4fc-41f3-850c-b6dc7f73c9fa.jpg" width="46%" heigth="50%"/>
 
-![](https://www.ossbar.com/codeshop/uploads/d5131fd4-feb9-4545-a8c8-c57c545071dd.jpg "课堂活动")
+<img src="https://www.ossbar.com/codeshop/uploads/d5131fd4-feb9-4545-a8c8-c57c545071dd.jpg"  width="46%" heigth="50%"/>
 
-![](https://www.ossbar.com/codeshop/uploads/ac0ce91b-f7d5-49c2-9cfb-9e5197044a64.jpg "直播课堂")
+<img src="https://www.ossbar.com/codeshop/uploads/ac0ce91b-f7d5-49c2-9cfb-9e5197044a64.jpg"  width="46%" heigth="50%"/>
 
 ![](https://www.ossbar.com/codeshop/uploads/1c759126-bd20-41b1-8f36-85d2d7770af5.png "我的")
 
