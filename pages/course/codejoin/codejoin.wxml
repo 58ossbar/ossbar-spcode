@@ -1,0 +1,67 @@
+<!--pages/course/codejoin/codejoin.wxml-->
+<view class="container">
+  <view class="block">
+    <form> 
+      <view class="form_list block fixed_marginb" hidden="{{!isShowInvCode}}">
+        <view class="form_line">
+          <view class="value_box">
+            <input placeholder='输入邀请码' type="number" bindinput="bindinput" bindfocus="bindfocus" value="{{invitationCode}}" bindblur="checkCode"></input>
+            <view class="fun_btn" bindtap="checkCode"><view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:28rpx;"></text></view></view>
+          </view>
+        </view>
+      </view>
+      <!--输入邀请码时显示课程信息-->
+      <view wx:if="{{showClass}}" class="{{!isShowInvCode?'margin-top-80':''}}">
+        <radio-group wx:if="{{classroomList && classroomList.length>0}}" bindchange="radioChange">
+          <label wx:for="{{classroomList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+            <view class="kc_box fixed_marginb" >
+              <!-- <view class="dashed"></view> -->
+              <view class="kc_name hide_single">{{item0.name}}</view>
+              <view class="kc_fm"><image src="{{item0.pic}}"></image></view>
+              <view class="kc_info">
+                <view class="info1 hide_single">{{item0.className}}</view>
+                <view class="info2">
+                  <view class="icon_wrapper"><text class="iconfont iconyonghuzu icon_read_nums" style="font-size:32rpx;"></text></view>
+                  <text>{{item0.studyNum}}人学习</text>
+                </view>
+                <view class="info3">{{item0.subjectProperty}}</view>
+              </view>
+              <view class="teach_box">
+                <view class="teach_left">
+                  <view class="image_box"><image src="{{item0.teacherPic}}"></image></view>
+                  <view class="teach hide_single"><text>授课\n</text>
+                    <text wx:if="{{item0.teacherName}}">{{item0.teacherName}}</text>
+                    <text wx:else>暂无</text>
+                  </view>
+                </view>
+                <view class="teach_right">
+                  <view class="image_box" wx:if="{{item0.traineeName}}">
+                    <image wx:if="{{item0.traineePic}}" src="{{item0.traineePic}}"></image>
+                  </view>
+                  <view class="teach hide_single" wx:if="{{item0.traineeName}}">
+                    <text>辅教\n</text>
+                    <text wx:if="{{item0.traineeName}}">{{item0.traineeName}}</text>
+                    <text wx:else>暂无</text>
+                  </view>
+                </view>
+              </view>
+              <radio class="radio" value="{{index0}}" checked="{{item0.ctId == currCheckedClassRoom.ctId}}"></radio>
+            </view>
+          </label>
+        </radio-group>
+      </view>
+      <!--未输入邀请码时显示默认背景-->
+      <view class="kc_no" wx:else>
+        <view class="w_gray">
+          <text wx:if="{{noSearchClassRoom == 'searchNoList'}}">当前邀请码未搜索到课堂</text>
+          <text wx:if="{{noSearchClassRoom == 'noSearch'}}">邀请码不区分大小写\n请向老师咨询邀请码，加入课堂</text>
+        </view>
+        <image src="../../../images/joinkc.png"></image>
+      </view>
+      <view wx:if="{{isPassApply}}" class="pass_apply_class w_gray">课堂已加入，正在审核中，请耐心等待...</view>
+      <view wx:else class="btn_line" hidden="{{!classroomList || (classroomList && classroomList.length<1)}}">
+        <button bindtap="joinClassroom">加入课堂</button>
+      </view>
+    </form>
+  </view>
+</view>

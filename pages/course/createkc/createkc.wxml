@@ -1,0 +1,157 @@
+<!--pages/course/createkc/createkc.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;">
+  <form report-submit="true">
+      <view class="bg_white fixed_marginb">
+        <view class="column_title">
+          <view class="title"><text>I</text>填写课堂信息</view>
+        </view>
+        <view class="form_list">
+          <!-- 课堂名称begin -->
+          <view class="form_line">
+            <view class="key_name">课堂名称<text>*</text></view>
+            <view class="value_box">
+              <input placeholder='请输入课堂名称' name="name" bindinput="bindinput" data-name="name" value="{{dataForm.name}}"></input>
+            </view>
+          </view>
+          <!-- 课堂名称end -->
+          <!-- 职业路径begin  bindtap="{{ctId?'':'toAddMajor'}}"-->
+          <view class="form_line" data-name="major" bindtap="{{ctId && !isCanEdit?'':'toAddMajor'}}">
+            <view class="key_name">职业路径<text>*</text></view>
+            <view class="value_box">
+               <!-- class="{{ctId?'w_noedit':''}}"  -->
+              <input disabled='true' class="{{ctId && !isCanEdit?'w_noedit':''}}" placeholder='暂无数据' value="{{majorList[majorIndex].majorName}}" name="" ></input>
+              <!-- hidden="{{ctId}}" -->
+              <view class="fun_btn"  hidden="{{ctId && !isCanEdit}}" >
+                <view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+              </view>
+            </view>
+          </view>
+          <!-- 职业路径end -->
+          <!-- 课程名称begin {{ctId?'':'toAddSubject'}} -->
+          <view class="form_line" data-name="subject" bindtap="{{ctId && !isCanEdit?'':'toAddSubject'}}">
+            <view class="key_name">课程名称<text>*</text></view>
+            <view class="value_box">
+              <!-- class="{{ctId?'w_noedit':''}}"  -->
+              <input disabled='true' class="{{ctId && !isCanEdit?'w_noedit':''}}"  placeholder='暂无数据' value="{{subjectList[subjectIndex].subjectName}}" name=""></input>
+               <!-- hidden="{{ctId}}" -->
+              <view class="fun_btn" hidden="{{ctId && !isCanEdit}}">
+                <view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+              </view>
+            </view>
+          </view>
+          <!-- 课程名称end -->
+          <!-- 课堂封面begin -->
+          <view class="form_line">
+            <view class="key_name">课堂封面<text>*</text></view>
+            <view class="value_box">
+              <view class="img_back">
+                <image src="{{tempFilePath}}" mode="scaleToFill"></image>
+              </view>
+              <view class="up_img align-center-vertical flex_direction_column" bindtap="changeImg">
+                <view class="icon_wrapper "><text class="iconfont iconshangchuantupian w_blue" style="font-size:70rpx;"></text></view>
+                <view class="font_s">点击上传封面</view>
+              </view>
+            </view>
+          </view>
+          <!-- 课堂封面end -->
+          <!-- 教学包begin   bindtap="toAddPkg"  -->
+          <view class="form_line" data-name="pkg" bindtap="{{ctId && !isCanEdit?'':'toAddPkg'}}">
+            <view class="key_name">教学包</view>
+            <view class="value_box">
+              <input disabled='true' class="{{ctId && !isCanEdit?'w_noedit':''}}"  placeholder="请选择教学包" value="{{pkgList[pkgIndex].pkgName}}" name=""></input>
+              <view class="fun_btn" hidden="{{ctId && !isCanEdit}}">
+                <view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+              </view>
+            </view>
+          </view>
+          <!-- 教学包end -->
+          <!-- 课堂简介begin -->
+          <view class="form_line">
+            <view class="key_name">课堂简介</view>
+            <view class="value_box">
+              <textarea wx:if="{{!pickerDatas.isShowPicker}}" maxlength="200" show-confirm-bar="{{false}}" placeholder="请输入课堂简介" name="intro" bindinput="bindinput" data-name="intro" value="{{dataForm.intro}}"></textarea>
+              <view wx:else class="textarea_view">{{dataForm.intro?dataForm.intro:'请输入课堂简介'}}</view>
+            </view>
+          </view>
+          <!-- 课堂简介end -->
+        </view>
+      </view>
+      <!-- 班级的添加与信息显示begin -->
+      <view class="bg_white fixed_marginb">
+        <!-- bindtap="toAddClass" -->
+        <view class="column_title" data-name="class" bindtap="{{ctId && !isCanEdit?'':'toAddClass'}}" >
+          <view class="title">
+            <text>I</text>添加班级信息<text class="required_text">*</text>
+          </view>
+          <view class="fun_btn"  hidden="{{ctId && !isCanEdit}}">
+            <view class="icon_wrapper"><text class="iconfont iconjiahao-circle font_w" style="font-size:30rpx;"></text></view>
+          </view>
+        </view>
+        <!-- 添加的班级信息展示begin -->
+        <view class="form_list" wx:if="{{classIndex && classIndex.length>0}}">
+          <view class="form_line" wx:for="{{classIndex}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+            <view class="key_name">班级名称</view>
+            <view class="value_box">
+              <input placeholder='请输入班级名称' disabled="{{true}}" value="{{classList[item0].className}}"></input>
+              <view  hidden="{{ctId && !isCanEdit}}" class="fun_btn" data-currindex="{{index0}}" bindtap="toDelClassId">
+                <view class="icon_wrapper"><text class="iconfont iconjianhao-circle font_w" style="font-size:28rpx;"></text></view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 添加的班级信息展示end -->
+      </view>
+      <!-- 班级的添加与信息显示end -->
+      <!-- 加入班级是否审核begin -->
+      <view class="switch_line bg_white">
+        <view class="switch_name">
+          <text>I</text>加入课堂是否审核</view>
+          <text>{{dataForm.isCheck == 'Y'?'是':'否'}}</text>
+          <switch color="#0033cc" checked="{{dataForm.isCheck == 'Y'}}" data-name="isCheck" bindchange="switchChange"></switch>
+      </view>
+      <!-- 加入班级是否审核end -->
+     
+      <!-- 是否是直播课begin -->
+      <view class="switch_line bg_white"  class="{{dataForm.ifLiveLesson && dataForm.ifLiveLesson == 'Y' ? 'switch_line bg_white hasLiveUrl border-bottom':'switch_line bg_white'}}">
+        <view class="switch_name">
+          <text>I</text>是否是直播课</view>
+          <text>{{dataForm.ifLiveLesson == 'Y'?'是':'否'}}</text>
+          <switch color="#0033cc" checked="{{dataForm.ifLiveLesson == 'Y'}}" data-name="ifLiveLesson" bindchange="switchChange"></switch>
+      </view>
+      <!-- 是否是直播课end -->
+      <view class="form_list fixed_marginb" hidden="{{!dataForm.ifLiveLesson || dataForm.ifLiveLesson != 'Y'}}">
+          <!-- 直播地址begin -->
+          <view class="form_line">
+            <view class="key_name">直播地址<text>*</text></view>
+            <view class="value_box">
+              <input placeholder='请输入直播地址' name="linkUrl" bindinput="bindinput" data-name="linkUrl" value="{{dataForm.linkUrl}}"></input>
+            </view>
+          </view>
+          <!-- 直播地址end -->
+      </view>
+
+       <!-- 是否是公开课begin -->
+       <view class="switch_line bg_white">
+        <view class="switch_name">
+          <text>I</text>是否是公开课</view>
+          <text>{{dataForm.isPublic == 'Y'?'是':'否'}}</text>
+          <switch color="#0033cc" checked="{{dataForm.isPublic == 'Y'}}" data-name="isPublic" bindchange="switchChange"></switch>
+      </view>
+      <!-- 是否是公开课end -->
+
+
+
+
+    <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="backClass">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="saveClass"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>保存</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+    
+  </form>
+  <!-- 下拉选择器begin -->
+  <cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+  <!-- 下拉选择器end -->
+
+</view>

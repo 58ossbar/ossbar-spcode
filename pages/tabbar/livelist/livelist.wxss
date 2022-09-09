@@ -1,0 +1,4 @@
+/* pages/tabbar/livelist/livelist.wxss */
+.msgImg{
+  width: 100%;
+}

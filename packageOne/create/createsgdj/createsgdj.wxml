@@ -1,0 +1,68 @@
+<!--packageOne/create/createsgdj/createsgdj.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?((!isShowDetail?containerBottom:0) + fixedBottom*2):(!isShowDetail?containerBottom:'0')}}rpx;">
+  <view class="search_line">
+    <view class="search_box">
+      <input placeholder='输入搜索'  name="traineeName" value="{{traineeName}}" bindinput="bindinput"></input>
+      <view class="search_logo" bindtap="searchInput">
+        <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+      </view>
+    </view> 
+  </view>
+
+  <!-- 学员列表begin -->
+  <view wx:if="{{traineeList && traineeList.length>0}}">
+    <block wx:for="{{traineeList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <view class="column_title" bindtap="allCancel" data-currindex="{{index0}}">
+        <view class="title">
+          <checkbox  class="all_checkbox" value="" checked="{{item0.isChecked}}"></checkbox>
+          <text>I</text>{{item0.signStateName}}
+        </view>
+        <view class="fun_btn_extend">
+          <text wx:if="{{item0.children && item0.children.length>0}}">{{item0.children.length}}人</text><text wx:else>0人</text>
+        </view>
+      </view>
+      <view class="list bg_white" wx:if="{{item0.children && item0.children.length>0}}">
+        <checkbox-group bindchange="checkboxChange" data-currindex="{{index0}}">
+          <label wx:for="{{item0.children}}" wx:for-item="item01" wx:for-index="index01" wx:key="index01">
+            <view class="msgbox">
+              <checkbox value="{{index01}}" checked="{{item01.isChecked}}"></checkbox>
+              <view class="img_box">
+                <view class="head_img bg_gray_light"><image src="{{item01.traineePic}}"></image></view>
+              </view>
+              <view class="cont_box overflow_hidden">
+                <view class="trainee_name_box hide_single">
+                  <text wx:if="{{item01.traineeName}}">{{item01.traineeName}}</text>
+                  <text wx:else>暂无</text>
+                </view>
+                <view class=" font_s_g trainee_name_box jobnum_time_box  hide_single">
+                  <text wx:if="{{item01.jobNumber}}">{{item01.jobNumber}}</text>
+                  <text wx:elif="{{item01.mobile}}">{{item01.mobile}}</text>
+                  <text wx:else>暂无</text>
+                  <text class="font_s_g" wx:if="{{item01.signState == '1'}}">{{item01.createTime}}</text>
+                </view>
+              </view>
+            </view>
+          </label>
+        </checkbox-group>
+      </view>
+    </block>
+  </view>
+
+  <view class="bottom_btnline bg_white" hidden="{{isShowDetail}}" style="bottom:{{fixedBottom}}px;">
+    <view class="bottom_btn " bindtap="cancel">取消</view>
+    <view class="bottom_btn bg_blue w_white" data-type="show" bindtap="typeClassTap">设置签到状态</view>
+  </view>
+  <!--固定到底部 的  底部占位 -->
+  <view class="fixedBottomView" hidden="{{isShowDetail}}" style="height:{{fixedBottom}}px;"></view>
+
+  <!-- 学员列表end -->
+  <!-- 暂无数据 begin  isShow="{{!traineeList || traineeList.length<1}}" -->
+  <cb-no-data type="2" isShow="{{noDataSgqIsShow}}"></cb-no-data>
+  <!-- 暂无数据 end-->
+
+</view>
+
+<action-sheet hidden="{{typeSheetHidden}}" >
+  <action-sheet-item wx:for="{{signTypeList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" data-state="{{item0.dictCode}}" bindtap="{{item0.dictCode?'setTraineeSignState':''}}">{{item0.dictValue}}</action-sheet-item>
+  <action-sheet-cancel data-type="cancel" bindtap="typeClassTap">取消</action-sheet-cancel>
+</action-sheet>

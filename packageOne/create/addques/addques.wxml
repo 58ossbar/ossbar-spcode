@@ -1,0 +1,92 @@
+<!--packageOne/create/addques/addques.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;" >
+  <form report-submit="true">
+    <!-- 题目序号 and 添加题目begin -->
+    <view class="ques_line">
+      <!-- 题目序号begin -->
+      <view class="ques_items" wx:if="{{result && result.length>0}}" wx:for="{{result}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" bindtap="toTabTm" data-currindex="{{index0}}">
+        <text class="bg_line"></text><text class="items_no">{{index0+1}}</text>
+      </view>
+      <!-- 题目序号end -->
+      <!-- 添加题目begin -->
+      <view class="ques_items ques_items_add" bindtap="toAddNewTm" hidden="{{onlyWatchActivityInfo}}">
+        <text class="bg_line" wx:if="{{result && result.length>0}}"></text>
+        <view class="icon_wrapper"><view class="bg_blue ques_items_icon"><text class="iconfont iconjiahao w_white" style="font-size:22rpx;"></text></view></view>
+      </view>
+      <!-- 添加题目end -->
+    </view>
+    <!-- 题目序号 and 添加题目end -->
+    <!-- 题干begin -->
+    <view class="form_list">
+      <view class="form_line">
+        <view class="value_box">
+          <textarea show-confirm-bar="{{false}}" maxlength="500" placeholder="点击输入题干，最多500字" name="questionName" value="{{result[currTmIndex].questionName}}" data-name="questionName" disabled="{{onlyWatchActivityInfo}}" bindinput="textareaInput"></textarea>
+        </view>
+      </view>
+    </view>
+    <!-- 题干end -->
+    <!-- 题目类型begin -->
+    <view class="form_list">
+      <radio-group bindchange="radioChange" >
+        <label  wx:if="{{questionTypeList && questionTypeList.length>0}}" wx:for="{{questionTypeList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+          <view class="form_line">
+            <view class="value_box">
+              <view class="value_extend"><!-- 单选 -->{{item0.dictValue}}</view>
+              <!-- disabled="{{onlyWatchActivityInfo || result[currTmIndex].questionId}}" -->
+              <radio value="{{item0.dictCode}}" checked="{{result[currTmIndex].questionType == item0.dictCode}}" disabled="{{onlyWatchActivityInfo}}"></radio>
+            </view>
+          </view>
+        </label>
+      </radio-group>
+    </view>
+    <!-- 题目类型end -->
+    <view class="bg_white" hidden="{{result[currTmIndex].questionType == '3'}}">
+      <view class="column_title" hidden="{{onlyWatchActivityInfo}}">
+        <view class="title">
+          <text>点击添加选项</text>
+          <text class="w_orange"> (复选框选中可填写)</text>
+        </view>
+        <!-- 点击添加选项begin -->
+        <view class="fun_btn" bindtap="toAddOption"><view class="icon_wrapper"><text class="iconfont iconjiahao-circle font_w" style="font-size:32rpx;"></text></view></view>
+        <!-- 点击添加选项end -->
+      </view>
+      <!-- 题目选项begin -->
+      <view class="form_list" wx:if="{{result[currTmIndex].children && result[currTmIndex].children.length>0}}" wx:for="{{result[currTmIndex].children}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+        <view class="form_line">
+          <view class="key_name" bindtap="{{onlyWatchActivityInfo?'':'checkboxCodeChange'}}" data-currindex="{{index0}}">
+            <checkbox class="checkbox_code" value="{{index0}}" checked="{{item0.canFill && item0.canFill == 'Y'}}" disabled="{{onlyWatchActivityInfo}}" ></checkbox>
+            <text>{{item0.optionCode}}</text>
+          </view>
+          <view class="value_box">
+            <input placeholder='点击输入选项内容' disabled="{{onlyWatchActivityInfo}}" name="optionName" value="{{item0.optionName}}" bindinput="optionInput" data-currindex="{{index0}}"></input>
+            <view class="fun_btn" bindtap="toDelOption" hidden="{{onlyWatchActivityInfo}}" data-currindex="{{index0}}"><view class="icon_wrapper"><text class="iconfont iconjianhao-circle font_w" style="font-size:28rpx;"></text></view></view>
+          </view>
+        </view>
+      </view>
+      <!-- 题目选项end -->
+      <view class="value_exp w_orange" wx:if="{{onlyWatchActivityInfo}}"> 复选框选中可填写</view>
+    </view>
+
+    <view class="bg_white" hidden="{{result[currTmIndex].questionType != '3'}}">
+      <view class="form_list">
+        <view class="form_line">
+          <view class="value_box">
+            <textarea show-confirm-bar="{{false}}" maxlength="1000" name="tips" placeholder="简答题提示语，补充说明" value="{{result[currTmIndex].tips}}" data-name="tips" bindinput="textareaInput" disabled="{{onlyWatchActivityInfo}}"></textarea>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--   底部按钮栏 begin -->
+    <block wx:if="{{!onlyWatchActivityInfo}}">
+      <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+        <view class="bottom_btn " bindtap="toCreateWJ">上一步</view>
+        <view class="bottom_btn bg_orange w_white" bindtap="toDelCurrTm">删除第<text class="bottom_del_tm bg_white w_orange">{{currTmIndex +1}}</text>题</view>
+        <view class="bottom_btn bg_blue w_white" bindtap="toActivity"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>保存</view>
+      </view>
+      <!--固定到底部 的  底部占位 -->
+      <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+    </block>
+    <!--   底部按钮栏 end -->
+  </form>
+</view>

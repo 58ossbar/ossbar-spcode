@@ -1,0 +1,126 @@
+<!--pages/tabbar/percenter/percenter.wxml-->
+<view class="container">
+  <!--个人信息展示-->
+  <view class="per_box">
+    <view class="head_cont">
+      <view class="per_line1">
+        <view class="per_img">
+          <image wx:if="{{myInfo.basicInfo && myInfo.basicInfo.traineePic}}" src="{{myInfo.basicInfo.traineePic}}"></image>
+          <image wx:else src="../../../images/perdefault.jpg"></image>
+        </view>
+        <view class="per_inof">
+          <block wx:if="{{userState == '1'}}">
+            <button class="sign" bindtap="toSignIn">登录</button>
+          </block>
+          <block wx:else>
+            <view class="hide_single">
+              <text wx:if="{{myInfo.basicInfo && myInfo.basicInfo.traineeName}}">{{myInfo.basicInfo.traineeName}}</text>
+              <text wx:else>暂无</text>
+            </view>
+            <view>
+              <text wx:if="{{myInfo.basicInfo && myInfo.basicInfo.mobile}}">{{myInfo.basicInfo.mobile}}</text>
+              <text wx:else>暂无</text>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="per_line2">
+        <view class="line2_block">
+          <view class="block_value"><!-- 90 -->
+            <text wx:if="{{ myInfo.charmInfo && (myInfo.charmInfo.empiricalValue || myInfo.charmInfo.empiricalValue==0)}}">{{myInfo.charmInfo.empiricalValue}}</text><text wx:else>0</text>
+          </view>
+          <view class="block_title">经验值</view>
+        </view>
+        <view class="line2_block" wx:if="{{isTeacher}}">
+          <view class="block_value">
+            <text wx:if="{{ myInfo.charmInfo && (myInfo.charmInfo.studentNum || myInfo.charmInfo.studentNum==0)}}">{{myInfo.charmInfo.studentNum}}</text><text wx:else>0</text>
+          </view>
+          <view class="block_title">学员数</view>
+        </view>
+        <view class="line2_block" wx:else>
+          <view class="block_value">
+            <text wx:if="{{ myInfo.charmInfo && (myInfo.charmInfo.cloudClassroomNum || myInfo.charmInfo.cloudClassroomNum==0)}}">{{myInfo.charmInfo.cloudClassroomNum}}</text><text wx:else>0</text>
+          </view>
+          <view class="block_title">课程数</view>
+        </view>
+        <view class="line2_block">
+          <view class="block_value">
+            <text wx:if="{{ myInfo.charmInfo && (myInfo.charmInfo.blogsNum || myInfo.charmInfo.blogsNum==0)}}">{{myInfo.charmInfo.blogsNum}}</text><text wx:else>0</text>
+          </view>
+          <view class="block_title">博客数</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!--功能列表-->
+  <view class="fun_list fixed_marginb">
+
+    <view class="fun_line" bindtap="toMyColl">
+      <view class="fun_logo">
+        <view class="icon_wrapper"><text class="iconfont iconwodeshoucang" style="font-size:54rpx;color:#ffd300;"></text></view>
+      </view>
+      <view class="fun_title">
+        我的收藏
+        <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+      </view>
+    </view>
+
+    <view class="fun_line" bindtap="toBaoMing">
+      <view class="fun_logo fun_logo_wrap">
+        <image class="fun_logo_baoming " src="../../../images/ind_add_s.png"></image>
+      </view>
+      
+      <view class="fun_title">
+        我要报名
+        <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+      </view>
+    </view>
+
+  
+
+  </view>
+
+  <view class="fun_list fun_line_button_wrap fixed_marginb" >
+
+    <view class="fun_line" bindtap="toZiXun">
+      <view class="fun_logo">
+        <view class="icon_wrapper"><text class="iconfont icontaolunneirong" style="font-size:54rpx;color:#1296db;"></text></view>
+      </view>
+      <view class="fun_title">
+        我要咨询
+        <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+      </view>
+    </view>
+
+    <view class="fun_line" bindtap="toContactUs">
+      <view class="fun_logo">
+        <view class="icon_wrapper"><text class="iconfont iconxiaoxi" style="font-size:54rpx;color:#ffd300;"></text></view>
+      </view>
+      <view class="fun_title">
+        联系我们
+        <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class="fun_list">
+    <view class="fun_line" bindtap="toUpdateLog">
+      <view class="fun_logo">
+        <view class="iconfont_svg icongengxinrizhi width-all height-all" ></view>
+      </view>
+      <view class="fun_title">
+        更新日志
+        <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+      </view>
+    </view>
+  </view>
+
+  <!--授权按钮弹层begin-->
+  <!-- title='微信授权' content='小程序申请获得你的手机号码' showCancel="{{false}}" showConfirm="{{false}}"   -->
+  <cb-modal  show="{{modalIsShow}}" showButton="{{true}}" buttonOpenType="getPhoneNumber" bindgetPhoneNumberBack="getPhoneNumberBack"></cb-modal>
+  <!-- 授权按钮弹层end -->
+  
+
+</view>

@@ -1,0 +1,32 @@
+/* packageOne/me/updatelog/updatelog.wxss */
+.container {
+  /* padding-bottom: 120rpx; */
+  padding-bottom: 20rpx;
+  position: relative;
+}
+
+.praisebox .cont_box {
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.praisebox .cont_box .top_cont .reply_me {
+  text-indent: 2rem;
+}
+.time,
+.logs .praisebox .cont_box .top_cont .reply_me .reply_me_view {
+  margin-bottom: 20rpx;
+}
+.logs .praisebox .cont_box .top_cont .reply_me .reply_me_view:last-child {
+  margin-bottom: 0rpx;
+}
+
+.support {
+  bottom:20rpx;
+}
+
+.praisebox .cont_box .top_cont .reply_me ._img{
+  width: 100% !important;
+  margin-left: -2rem;
+  text-indent: 0rem;
+}

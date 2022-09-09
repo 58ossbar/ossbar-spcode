@@ -1,0 +1,52 @@
+<!--packageOne/me/peredit/peredit.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;">
+  <form report-submit="true">
+
+    <view class="bg_white fixed_marginb">
+      <view class="per_img bg_gray_light" bindtap="chooseImg">
+        <image wx:if="{{myInfo.basicInfo && myInfo.basicInfo.traineePic}}" src="{{myInfo.basicInfo.traineePic}}"></image>
+        <image wx:else src="../../../images/perdefault.jpg"></image>
+        <view class="camera_btn"><view class="icon_wrapper"><text class="iconfont iconxiangji w_white" style="font-size:48rpx;"></text></view></view>
+      </view>
+      <view class="form_list">
+        <view class="form_line">
+          <view class="key_name">姓名<text>*</text></view>
+          <view class="value_box ">
+            <input placeholder='请填写姓名' data-name="traineeName" name="traineeName" value="{{myInfo.basicInfo.traineeName}}" bindinput="bindinput"></input>
+          </view>
+        </view>
+        <view class="form_line">
+          <view class="key_name">昵称<text>*</text></view>
+          <view class="value_box ">
+            <input placeholder='请填写昵称' data-name="nickName" name="nickName" value="{{myInfo.basicInfo.nickName}}" bindinput="bindinput"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+        <view class="form_line" data-name="sex" bindtap="toAddSex">
+          <view class="key_name">性别</view>
+          <view class="value_box">
+            <view class="value_extend overflow_hidden picker_name">{{sexList && sexList[sexIndex] && sexList[sexIndex].dictValue?sexList[sexIndex].dictValue:'暂无'}}</view>
+            <view class="fun_btn"><view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="cancel">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="save"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>保存</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+
+
+    <!-- 下拉选择器begin -->
+    <cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+    <!-- 下拉选择器end -->
+
+  </form>
+</view>

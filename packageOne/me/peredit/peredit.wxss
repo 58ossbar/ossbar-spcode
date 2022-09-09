@@ -1,0 +1,54 @@
+/* packageOne/me/peredit/peredit.wxss */
+.value_extend {
+  text-align: left;
+  /* color: #353535; */
+}
+
+.per_img {
+  height: 200rpx;
+  text-align: center;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.per_img image {
+  width:160rpx; 
+  height:160rpx; 
+  border-radius: 50%;
+  overflow: hidden;
+  border: #dee0e3 solid 6rpx;
+}
+.camera_btn {
+  width: 68rpx;
+  height: 68rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: #0033cc;
+  border: #FFF solid 4rpx;
+  z-index: 2;
+  position: absolute;
+  bottom: 20rpx;
+  left: calc(50vw + 50rpx);
+}
+.camera_btn image,
+.camera_btn .icon_wrapper {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 0;
+}
+.value_box{
+  width: calc(100% - 200rpx);
+}
+.value_extend{
+  width: calc(100% - 80rpx);
+}
+
+.key_name text {
+  margin-left: 10rpx;
+  color: red;
+}
+.form_list .form_line .value_box input,
+.form_list .form_line .picker_name{
+  color: #353535;
+}

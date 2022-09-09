@@ -1,0 +1,16 @@
+<!--picker/picker.wxml-->
+<!-- picker 日期组件 -->
+<view class="full-box {{isOpen?'cur':''}}"  bindtap="tapModal">
+	<view class="picker">
+		<view class="sheet_head picker_head_wrapper">
+			<view class="side_head" bindtap="cancle">取消</view>
+			<view class="midd_head" wx:if="{{titleText}}">{{titleText}}</view>
+			<view class="side_head" bindtap="sure">确定</view>
+		</view>
+		<picker-view value="{{value}}"	class="picker-content"	bindpickstart="_bindpickstart"	bindchange="_bindChange"	bindpickend="_bindpickend"	indicator-style="{{indicatorStyle}}"	mask-style="{{maskStyle}}">
+			<picker-view-column wx:for="{{columnsData}}" wx:for-item="item0"  wx:for-index="index0" wx:key="index0" wx:if="{{index0 < currPickerTypeLength}}">
+				<view wx:for="{{item0}}" wx:for-item="item1"  wx:for-index="index1" class="picker-line" style="{{chooseItemTextStyle}}"	wx:key="index1">{{item1}}</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+</view>

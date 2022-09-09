@@ -1,0 +1,98 @@
+<!--pages/other/xqwj/xqwj.wxml-->
+<view class="container">
+  <view class="column_title bg_white">
+    <view class="title hide_single"><!-- 投票问卷 2020-1483313 -->{{activityInfo.activityTitle}}</view>
+    <view class="fun_btn_extend" bindtap="toxqnrBoxShow">结果统计</view>
+  </view>
+  <!-- 题目序号 begin -->
+  <view class="ques_line"  wx:if="{{activityInfo && activityInfo.tmList && activityInfo.tmList.length>0}}">
+    <view wx:for="{{activityInfo.tmList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" bindtap="toTabTm" data-currindex="{{index0}}" class="ques_items {{currTmIndex ==index0?'active':'' }}" >
+      <text wx:if="{{activityInfo.tmList.length>1}}" class="bg_line"></text>
+      <text class="items_no">{{index0+1}}</text>
+    </view>
+  </view>
+  <!-- 题目序号 end -->
+
+  <view class="noqk bg_white">
+    <view class="title"><text class="w_orange font_w">{{activityInfo.submitTheNumber}}</text>人提交<text class="font_s_g" wx:if="{{!classroomIdentity || classroomIdentity != 'teacher'}}">{{activityInfo.hasBeenDone?' / 你已投票':' / 你未投票'}}</text></view>
+    <view class="fun_btn_extend" bindtap=""><view class="icon_wrapper rotate90 display_flex"><text class="iconfont iconpaixu" style="font-size:24rpx;"></text></view></view>
+  </view>
+  <!-- 题目 begin -->
+  <view class="bg_white" style="padding: 20rpx;" wx:if="{{activityInfo && activityInfo.questionList && activityInfo.questionList[0] && activityInfo.questionList[0].questionName }}">
+    <view class="wjtm">
+      <text class="font_w">{{activityInfo.questionList[0].questionTypeName}}：</text>
+      <text>{{activityInfo.questionList[0].questionName}}</text>
+      <text wx:if="{{activityInfo.questionList[0].questionType == '3' && activityInfo.questionList[0].tips}}">（{{activityInfo.questionList[0].tips}}）</text>
+    </view>
+    <view class="list">
+      <block wx:if="{{activityInfo.questionList[0].questionType != '3'}}">
+        <block wx:if="{{activityInfo.questionList[0].children && activityInfo.questionList[0].children.length>0}}">
+          <view class="list_item" wx:for="{{activityInfo.questionList[0].children}}" wx:for-item="item01" wx:for-index="index01" wx:key="index01">
+            <view class="top">
+              <view class="top_item1">{{item01.optionCode}}：{{item01.optionName}}</view>
+              <!-- bindtap="{{item01.canFill && item01.canFill == 'Y' &&  item01.answerInfos && item01.answerInfos.length>0?'toFolder':''}}" -->
+              <view class="top_item2" bindtap="{{item01.answerInfos && item01.answerInfos.length>0?'toFolder':''}}" data-currindex="{{index01}}">
+                <view class="top_item2_nums">
+                  <view>{{item01.traineeAnswerNum}}</view>
+                  <!-- <view class="icon_wrapper iconRight_wrapper"> -->
+                    <!-- wx:if="{{  item01.canFill && item01.canFill == 'Y' &&  item01.answerInfos && item01.answerInfos.length>0}}" -->
+                    <text wx:if="{{ item01.answerInfos && item01.answerInfos.length>0}}" class="iconfont iconright rotate90" style="font-size:28rpx;"></text>
+                  <!-- </view> -->
+                </view>
+                <view>{{item01.percent}}</view>
+              </view>
+            </view>
+            <!-- <view class="top_two">
+              <view class="top_two_item1">{{item01.optionCode}}:{{item01.optionName}}</view>
+              <view class="top_two_item2 time">
+                <view class="top_two_item2_num">选择人数：{{item01.traineeAnswerNum}}人</view>
+                <view class="top_two_item2_percent"> {{item01.percent}}  </view>
+                <view class="icon_wrapper iconRight_wrapper"><text class="iconfont iconright rotate90" style="font-size:38rpx;"></text></view>
+                
+              </view>
+            </view> -->
+            <!-- <view class="bot_wrapper">  bot_camfill -->
+              <view class="bot ">
+                <text style="width:{{item01.percent}};"></text>
+              </view>
+              <!-- <view class="icon_wrapper iconRight_wrapper"><text class="iconfont iconright rotate90" style="font-size:38rpx;"></text></view>
+            </view> -->
+            
+            <!-- 当前可填写 选项的  作答 详情 begin -->
+            <!-- wx:if="{{  item01.canFill && item01.canFill == 'Y' &&  item01.answerInfos && item01.answerInfos.length>0}}" -->
+            <block wx:if="{{ item01.answerInfos && item01.answerInfos.length>0}}">
+              <view class="jianda_view" wx:for="{{item01.answerInfos}}" wx:for-item="item02" wx:for-index="index02" wx:key="index02" hidden="{{!item01.isFolder}}">   <!-- bindtap="toStuxqWj"  data-currindex="{{index02}}" data-type="" -->
+                <image class="jianda_view_img bg_gray_light" src="{{item02.traineePic}}"></image>
+                <view class="jianda_view_label">
+                  <view class="hide_single">{{item02.traineeName}}</view>
+                  <!-- <view class="hide_single">{{item02.answerInfo}}</view> -->
+                  <view class="hide_single">{{item01.canFill && item01.canFill == 'Y' ?item02.answerInfo: item02.traineeSex}}</view>
+                </view>
+              </view>
+            </block>
+            <!-- 当前可填写 选项的  作答 详情 end -->
+
+          </view>
+        </block>
+      </block>
+      <block wx:if="{{activityInfo.questionList[0].questionType == '3'}}">
+        <block wx:if="{{activityInfo.questionList[0].traineeAnswerList && activityInfo.questionList[0].traineeAnswerList.length>0}}">
+          <view class="jianda_view" wx:for="{{activityInfo.questionList[0].traineeAnswerList}}" wx:for-item="item02" wx:for-index="index02" wx:key="index02" bindtap="toStuxqWj" data-currindex="{{index02}}">
+            
+            <image class="jianda_view_img bg_gray_light" src="{{item02.traineePic}}"></image>
+            <view class="jianda_view_label">
+              <view class="hide_single">{{item02.traineeName}}</view>
+              <view class="hide_single">{{item02.content}}</view>
+            </view>
+            
+          </view>
+        </block>
+        <block wx:else >
+          <view class="jianda_view font_s_g">当前题目暂无学员作答</view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <!-- 题目 end -->
+
+</view>

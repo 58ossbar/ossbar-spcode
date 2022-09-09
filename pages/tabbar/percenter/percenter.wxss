@@ -1,0 +1,144 @@
+/* pages/tabbar/percenter/percenter.wxss */
+.container { 
+  /* padding-bottom: 220rpx; */
+  padding-bottom: 20rpx;
+  position: relative;
+}
+.per_box {
+  width: 100%;
+  height: 240rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+  background-color: #0033cc;
+}
+.per_box .head_bg,
+.per_box .head_cont {
+  width: 100%;
+  height: 100%; 
+  position: absolute;
+}
+.per_box .head_bg {
+  z-index: 5;
+}
+.per_box .head_cont {
+  z-index: 10;
+}
+
+.head_cont .per_line1 {
+  display: flex;
+  flex-direction: row;
+  padding:  0 40rpx 20rpx;
+}
+.head_cont .per_line1 .per_img {
+  width: 120rpx;
+  height: 120rpx;
+}
+.head_cont .per_line1 .per_img image{
+  border-radius:50%;
+  border: #FFF solid 6rpx;
+  box-sizing: border-box;
+}
+
+.head_cont .per_line1 .per_inof {
+  flex: 1;
+  height: 120rpx;
+  padding: 10rpx 20rpx 10rpx 40rpx;
+  box-sizing: border-box;
+  margin: 0;
+  float: left;
+
+  width: calc(100% - 170rpx);
+}
+.head_cont .per_line1 .per_inof view {
+  height:50rpx;
+  line-height: 50rpx;
+  color: #FFF;
+}
+.head_cont .per_line1 .per_inof .sign {
+  width: 240rpx;
+  height: 70rpx;
+  font-size: 28rpx;
+  line-height: 70rpx!important;
+  text-align: center;
+  color: #FFF;
+  background-color: #0033cc;
+  border: #FFF solid 2rpx;
+  padding:0;
+  border-radius: 8rpx; 
+  box-sizing: border-box;
+  margin: 15rpx auto;
+}
+
+.head_cont .per_line1 .per_edit {
+  width: 40rpx;
+  height: 120rpx;
+  padding: 40rpx 0;
+  box-sizing: border-box; 
+}
+.head_cont .per_line1 .per_edit image {
+  width: 100%;
+  height: 100%;
+}
+
+.head_cont .per_line2 {
+  display: flex;
+  flex-direction: row;
+  padding:  10rpx 20rpx;
+  box-sizing: border-box;
+  /* border-top: #efeef4 solid 2rpx; */
+}
+.head_cont .per_line2 .line2_block {
+  flex:1;
+  /*height: calc((100vw - 20rpx) / 4 - 20rpx);
+  box-shadow: 2px 2px 1px #ccc;*/
+  margin: 0 10rpx; 
+  border-right: #efeef4 solid 2rpx;
+}
+.head_cont .per_line2 .line2_block:last-child {
+  border-right: none;
+}
+
+.head_cont .per_line2 .line2_block .block_title,
+.head_cont .per_line2 .line2_block .block_value
+/*.per_box .per_line2 .line2_block .block_img*/ {
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #FFF;
+}
+.head_cont .per_line2 .line2_block .block_value {  
+  font-size: 40rpx; 
+}
+
+
+.support {
+  bottom:120rpx;
+}
+
+.bottom_btn {
+  width:calc(100% - 40rpx)!important;
+  left:20rpx;
+  bottom:20rpx;
+  position:absolute;
+}
+.fun_logo_wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fun_logo_baoming{
+  width: 50rpx;
+  height: 50rpx;
+}
+/* .fun_line_button_wrap button{
+
+} */
+.fun_line_button {
+  width: 100% !important;
+  padding: 0 !important;
+  color: #353535;
+  background-color: #fff !important;
+  font-size: 28rpx;
+  text-align: left;
+}

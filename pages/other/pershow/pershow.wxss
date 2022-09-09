@@ -1,0 +1,108 @@
+/* pages/other/pershow/pershow.wxss */
+.container{
+  padding-bottom: 20rpx;
+}
+.line1,
+.line2 {
+  display: flex;
+  flex-direction: row; 
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.line1 {
+  padding: 20rpx;
+}
+.line2 {
+  padding: 20rpx 10rpx;
+}
+.head_img {
+  width:120rpx;
+  height: 120rpx;
+  border-radius: 8rpx; 
+  overflow: hidden;
+}
+.line1_cent {
+  /* width: auto; */
+  margin-left: 20rpx;
+
+  width: 40%;
+}
+.line1_cent .top,
+.line1_cent .bot {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.line1_right {
+  /* flex: 1; */
+  width: 40%;
+  text-align: center;
+  height: 120rpx;
+  line-height: 120rpx;
+  margin-left: 20rpx;
+}
+.line1_right .iconfont{
+  margin-right: 6rpx;
+}
+
+.line2 .line2_itme {
+  width: calc((100vw - 80rpx) / 3);
+  height: 120rpx;
+  text-align: center;
+  background-color: #FFF;
+  margin: 0 10rpx;
+}
+
+.line2 .line2_itme view {
+  width:100%;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.line2 .line2_itme view:first-child {
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.dy {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.dy text {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius:50%;
+  overflow: hidden;
+  display: inline-block;
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+}
+.dy text:first-child {
+  margin-left: 0;
+  background-color: #99b2fd;
+}
+.dy text:nth-child(2) {
+background-color: #11b928;
+}
+.dy text:nth-child(3) {
+background-color: #fd7512;
+}
+
+.canvas{
+  width: 100%;
+  height: 400px;
+  box-sizing: border-box;
+}
+.canvas2{
+  height: 200px;
+}
+.canvas3{
+  height: 400px;
+}
+/* .canvas::after{
+  clear: both;
+} */
+
+.doMessing_btn{
+  width: 200rpx  !important;
+  font-size: 28rpx !important;
+  margin-bottom: 6rpx !important;
+}

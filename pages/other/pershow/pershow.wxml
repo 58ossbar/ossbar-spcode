@@ -1,0 +1,53 @@
+<!--pages/other/pershow/pershow.wxml-->
+<view class="container">
+  <view class="line1 bg_white">
+    <view class="head_img">
+      <image src="{{baseInfo.traineePic}}"></image>
+    </view>
+    <view class="line1_cent">
+      <view class="top font_w hide_single">
+        {{baseInfo.traineeName}}</view>
+      <view class="bot w_gray">
+        <text wx:if="{{baseInfo.mobile}}">{{baseInfo.mobile}}</text><text wx:else>暂无</text>
+      </view>
+    </view>
+    <!-- 学习大数据-->
+    <view class="line1_right overflow_hidden hide_single w_blue">经验值：{{baseInfo.empirical_value || 0}}</view>
+  </view>
+
+  <view class="column_title bg_white">
+    <view class="title"><text>I</text>课堂表现</view>
+  </view>
+  <view class="line2 bg_white">
+    <view class="line2_itme">
+      <view class="w_blue">{{baseInfo.blogsNum || 0}}</view>
+      <view>博客数</view>
+    </view>
+    <view class="line2_itme">
+      <view class="w_green">{{baseInfo.blogLikeNum || 0}}</view>
+      <view>博客点赞</view>
+    </view>
+    <view class="line2_itme">
+      <view class="w_orange">{{baseInfo.classroomPerformanceNum || 0}}</view>
+      <view>课堂表现</view>
+    </view>
+    <view class="line2_itme">
+      <view class="w_num_1">{{baseInfo.videoStudy || 0}}</view>
+      <view>视频学习</view>
+    </view>
+  </view>
+
+  <block wx:if="{{chartArr && chartArr.length > 0}}">
+    <block wx:for="{{chartArr}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <view class="column_title bg_white fixed_margint">
+        <view class="title"><text>I</text>{{item0.title}}</view>
+      </view>
+      <!-- ////canvas begin     -->
+      <view class="canvas canvas2 {{item0.className}} ">
+        <cb-ec-canvas id="mychart-dom-{{item0.id}}" canvas-id="mychart-{{item0.id}}" ec="{{ec}}"></cb-ec-canvas>
+      </view>
+      <!-- ////canvas end -->
+    </block>
+  </block>
+
+</view>

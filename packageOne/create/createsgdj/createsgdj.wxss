@@ -1,0 +1,96 @@
+/* packageOne/create/createsgdj/createsgdj.wxss */
+.search_line {
+  width:100%;
+  background-color:#0033cc;
+  padding:10rpx 20rpx;
+  box-sizing: border-box;
+}
+.search_line .search_box {
+  width:calc(100vw - 40rpx);
+}
+.msgbox {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding-top: 20rpx!important; 
+}
+.list label:first-child .msgbox {
+  padding-top:0 !important;
+}
+.msgbox .img_box {
+  text-align: center;
+  margin: 0 20rpx;
+  position: relative;
+}
+.msgbox .img_box .head_img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.msgbox .cont_box {
+  flex: 1;
+  height: 80rpx;
+  /* line-height: 80rpx; */
+  padding-right: 20rpx!important;
+  padding-bottom: 20rpx!important;
+  border-bottom: #efeef4 solid 2rpx!important;
+
+  /* display: flex;
+  justify-content: space-between; */
+}
+
+.list label:last-child .msgbox .cont_box {
+  padding-bottom: 0!important;
+  border-bottom:none!important;
+}
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.all_checkbox .wx-checkbox-input{
+  margin-top: 0rpx;
+  margin-left: 0rpx;
+}
+
+.listtop {
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #fff;
+}
+.listtop checkbox .wx-checkbox-input {
+  top: -10rpx;
+}
+.listtop label {
+  width: 190rpx;
+  display: flex;
+  flex-direction: row;
+}
+.chek_title {
+  width: 120rpx;
+  text-align: center;
+}
+.memberNo {
+  flex:1;
+  font-size:24rpx;
+}
+.dec_btn {
+  width: auto;
+  padding: 0 20rpx;
+}
+
+.msgbox .trainee_name_box{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-right: 20rpx;
+}
+.msgbox .jobnum_time_box{
+  display: flex;
+  justify-content: space-between;
+}

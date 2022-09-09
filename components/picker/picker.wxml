@@ -1,0 +1,53 @@
+<!--components/picker/picker.wxml-->
+<!-- 单选、多选picker下拉弹窗 -->
+<action-sheet hidden="{{!isShow}}" class="{{isShow?'picker_show':'picker_hide'}}" data-type="tapMark" bindchange="clickBtn">
+  
+  <block wx:if="{{isSlot}}">
+    <slot name="content"></slot>
+  </block>
+  <block wx:else>
+    <view class="sheet_head picker_head_wrapper">
+      <view class="side_head" data-type="cancel" bindtap="clickBtn">取消</view>
+      <view class="midd_head">{{title}}</view>
+      <view class="side_head" data-type="confirm" bindtap="clickBtn">确定</view>
+    </view>
+    <view class="picker_content">
+      <block wx:if="{{columnsData && columnsData.length>0}}" >
+        <picker-view wx:if="{{type == 'picker_radio'}}" value="{{columnsIndexList}}" class="picker_content"  indicator-class="picker_view_column_view" bindchange="_radioChange" bindpickstart="_pickStart" bindpickend="_pickEnd">
+          <picker-view-column>
+            <view wx:for="{{columnsData}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="picker_view_column_view">{{item0[keyWordOfShow]}}</view>
+          </picker-view-column>
+        </picker-view>
+        <scroll-view wx:else scroll-y="{{true}}" class="picker_content" scroll-into-view="pickerComp{{columnsIndexList[columnsIndexList.length -1]}}">
+          <!-- 单选begin -->
+          <block wx:if="{{type == 'radio'}}">
+            <radio-group bindchange="_radioChange">
+              <label wx:for="{{columnsData}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" id="pickerComp{{index0}}">
+                <action-sheet-item class="picker_action_item action_nodata">
+                  <radio value="{{index0}}" checked="{{item0.isChecked}}"></radio>
+                  {{item0[keyWordOfShow]}}
+                </action-sheet-item>
+              </label>
+            </radio-group>
+          </block>
+          <!-- 单选end -->
+          <!-- 多选begin -->
+          <block wx:if="{{type == 'checkbox'}}">
+            <checkbox-group bindchange="_checkboxChange">
+              <label wx:for="{{columnsData}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" id="pickerComp{{index0}}">
+                <action-sheet-item class="picker_action_item">
+                  <checkbox class="checkbox" value="{{index0}}" checked="{{item0.isChecked}}"></checkbox>
+                  {{item0[keyWordOfShow]}}
+                </action-sheet-item>
+              </label>
+            </checkbox-group>
+          </block>
+          <!-- 多选end -->
+        </scroll-view>
+      </block>
+      <block wx:else>
+        <action-sheet-item class="picker_action_item  action_nodata">暂无数据</action-sheet-item>
+      </block>
+    </view>
+  </block>
+</action-sheet>

@@ -1,0 +1,133 @@
+<!--pages/other/stuxqwj/stuxqwj.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?((!hasBeenDone?containerBottom:0) + fixedBottom*2):(!hasBeenDone?containerBottom:'0')}}rpx;">
+  <form report-submit="true">
+    <view class="column_title bg_white fixed_marginb" wx:if="{{!hasBeenDone}}">
+      <view class="title w_blue">说出你的观点和建议</view>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="{{hasBeenDone?'height-all':'scroll_view_class'}}" scroll-into-view="{{scrollTntoView}}">
+      <!-- 题目和附件 begin -->
+      <view class="fixed_marginb" wx:if="{{activityInfo && activityInfo.questionList && activityInfo.questionList.length>0}}" wx:for="{{activityInfo.questionList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+        <!-- 题目和选项begin -->
+        <view class="bg_white">
+          <view class="wt" id="question{{index0}}">
+            <text class="w_gray font_w" wx:if="{{item0.questionType=='1'}}">[单选题]</text>
+            <text class="w_gray font_w" wx:if="{{item0.questionType=='2'}}">[多选题]</text>
+            <text class="w_gray font_w" wx:if="{{item0.questionType=='3'}}">[简答题]</text>
+            <text>{{item0.questionName}}</text>
+            <text wx:if="{{item0.questionType == '3' && item0.tips}}">（{{item0.tips}}）</text>
+          </view>
+          <view class="form_list">
+            <radio-group bindchange="radioChange" wx:if="{{item0.questionType=='1'}}" data-currindex="{{index0}}">
+              <block wx:if="{{item0.children && item0.children.length>0}}" wx:for="{{item0.children}}" wx:for-item="item01" wx:for-index="index01" wx:key="index01" >
+                <label>
+                  <view class="form_line border-bottom-none">
+                    <view class="value_box check_value_box">
+                      <radio class="radio" value="{{index01}}" checked="{{item01.optionId == result[index0].optionIds}}" disabled="{{hasBeenDone}}"></radio>
+                      <text>{{item01.optionCode}}、{{item01.optionName}}</text>
+                    </view>
+                  </view>
+                </label>
+                <!-- 可 填写 的 输入框 begin   -->
+                <view wx:if="{{ item01.canFill && item01.canFill == 'Y' }}" class="form_line  {{ item01.optionId != result[index0].optionIds ?'hide':'border-bottom-none' }}"  >
+                  <view class="key_name radio_code_wrapper"></view>
+                  <view class="value_box">
+                    <input placeholder='点击输入内容'  name="content" value="{{result[index0].fillList[index01].content}}" data-currindex="{{index01}}" data-preindex="{{index0}}" disabled="{{hasBeenDone}}" bindinput="canFillInput" ></input>
+                  </view>
+                </view>
+                <!-- 可 填写 的 输入框end   -->
+              </block>
+            </radio-group>
+            <checkbox-group bindchange="checkboxChange" wx:if="{{item0.questionType=='2'}}" data-currindex="{{index0}}">
+              <block wx:if="{{item0.children && item0.children.length>0}}" wx:for="{{item0.children}}" wx:for-item="item01" wx:for-index="index01" wx:key="index01" >
+                <label>
+                  <view class="form_line border-bottom-none">
+                    <view class="value_box check_value_box">
+                      <checkbox value="{{index01}}" checked="{{item01.isChecked}}" disabled="{{hasBeenDone}}"></checkbox>
+                      <text>{{item01.optionCode}}、{{item01.optionName}}</text>
+                    </view>
+                  </view>
+                </label>
+                 <!-- 可 填写 的 输入框 begin   -->
+                 <view wx:if="{{ item01.canFill && item01.canFill == 'Y' }}" class="form_line {{item01.isChecked?'border-bottom-none':'hide'}} "  >
+                  <view class="key_name radio_code_wrapper"></view>
+                  <view class="value_box">
+                    <input placeholder='点击输入内容'  name="content" value="{{result[index0].fillList[index01].content}}" data-currindex="{{index01}}" data-preindex="{{index0}}" disabled="{{hasBeenDone}}" bindinput="canFillInput"  ></input>
+                  </view>
+                </view>
+                <!-- 可 填写 的 输入框end   -->
+              </block>
+            </checkbox-group>
+            <view class="form_line" wx:if="{{item0.questionType=='3'}}">
+              <view class="value_box">
+                <textarea maxlength="3000" disabled="{{hasBeenDone}}" show-confirm-bar="{{false}}" data-currindex="{{index0}}" bindinput="textareaInput" value="{{result[index0].content}}" placeholder="填写自己的观点和意见，也可以上传附件：图片、小视频"></textarea>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 题目和选项end -->
+        <block wx:if="{{item0.questionType=='3'}}">
+          <!-- 上传附件的选项按钮begin -->
+          <view class="column_title bg_white">
+            <block wx:if="{{hasBeenDone}}">
+              <view class="title" wx:if="{{result && result[index0].fileTempFiles && result[index0].fileTempFiles.length>0}}"><text>I</text>附件</view>
+            </block>
+            <block wx:if="{{!hasBeenDone}}">
+              <view class="title"><text>I</text>最多可添加30个附件</view>
+              <view class="fun_btn_extend {{item0.isEditFile?'hide':''}}" data-currindex="{{index0}}" bindtap="toChangeIsEdit">编辑</view>
+              <view class="fun_btn_extend {{item0.isEditFile?'':'hide'}}" data-currindex="{{index0}}" bindtap="toChangeIsEdit">取消</view>
+              <view class="fun_btn_extend {{item0.isEditFile?'':'hide'}}" data-currindex="{{index0}}" bindtap="doDel">删除</view>
+            </block>
+          </view>
+          <!-- 上传附件的选项按钮end -->
+          <!-- 上传附件的附件显示begin -->
+          <view class="bg_white {{item0.isEditFile?'fj_box_s':'fj_box'}}">
+            <view class="add_btn" data-type="show" bindtap="actionSheetTap" data-currindex="{{index0}}" wx:if="{{!hasBeenDone}}"><view class="icon_wrapper"><text class="iconfont iconjiahao" style="font-size:64rpx;"></text></view></view>
+
+            <checkbox-group bindchange="checkboxFileChange" data-currindex="{{index0}}">
+              <label wx:if="{{result && result[index0].fileTempFiles && result[index0].fileTempFiles.length>0}}" wx:for="{{result[index0].fileTempFiles}}" wx:for-item="item02" wx:for-index="index02" wx:key="index02">
+                <view >
+                  <view class="files_wrap hide_three" catchtap="toClickFile" data-currindex="{{index02}}" data-preindex="{{index0}}">
+                    <view class="video_wrapper align-center-vertical" wx:if="{{item02.type=='video'}}">
+                      <image mode="aspectFit" src="{{item02.pathPic}}"></image>
+                      <text class="iconfont iconkaishi w_white video_icon" style="font-size:40rpx;"></text>
+                    </view>
+                    <image wx:if="{{item02.type=='image'}}" src="{{item02.path}}"></image>
+                    <text wx:else>{{item02.name}}</text>
+                  </view>
+                  <checkbox class="checkbox" disabled="{{!item0.isEditFile}}" value="{{index02}}" checked="{{item02.isChecked}}"></checkbox>
+                </view>
+              </label>
+            </checkbox-group>
+
+          </view>
+          <!-- 上传附件的附件显示end -->
+        </block>
+      </view>
+      <!-- 题目和附件 end -->
+    </scroll-view>
+
+    <view class="bottom_btnline bg_white" hidden="{{hasBeenDone}}" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="cancel">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="toSave"><text class="iconfont icongou-fill-circle w_blue" style="font-size:30rpx;"></text>提交</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" hidden="{{hasBeenDone}}" style="height:{{fixedBottom}}px;"></view>
+
+  </form>  
+
+  <video hidden='{{!isShowVideo}}' autoplay='{{true}}' id="myvideo" class='videoFullScreen' src='{{videoSrc}}' bindfullscreenchange='videoFullScreenChange' binderror="videoError" ></video>
+  
+
+  <!-- 上传附件 页脚begin -->
+  <action-sheet hidden="{{actionSheetHidden}}">
+    <view class="add_box">
+      <view class="add_items" wx:for="{{actionSheetFileLabelArr}}" wx:for-index="index0" wx:for-item="item0" wx:key="index0" data-type="{{item0.type}}" bindtap="toAddFile" >
+        <view class="ico_img"><view class="iconfont {{item0.url}} img_s width-all height-all" style="font-size:58rpx;color:{{item0.color}};"></view></view>
+        <view class="items_na">{{item0.label}}</view>
+      </view>
+    </view>
+    <action-sheet-cancel data-type="cancel" bindtap="actionSheetTap">取消</action-sheet-cancel>
+  </action-sheet>
+  <!-- 上传附件 页脚end -->
+  
+</view>

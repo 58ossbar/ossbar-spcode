@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cb-parser-group":"/components/parser-group/parser-group"
+  },
+  "navigationBarTitleText": "更新日志"
+}

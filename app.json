@@ -1,0 +1,125 @@
+{
+  "pages": [
+    "pages/tabbar/home/home",
+    "pages/tabbar/courselist/courselist",
+    "pages/tabbar/msgcenter/msgcenter",
+    "pages/tabbar/percenter/percenter",
+    "pages/tabbar/livelist/livelist",
+
+    "pages/course/codejoin/codejoin",
+    "pages/course/createkc/createkc",
+    
+    "pages/classroom/activity/activity",
+    "pages/classroom/resource/resource",
+    "pages/classroom/member/member",
+    "pages/classroom/message/message",
+
+    "pages/other/notice/notice",
+    "pages/other/memberlist/memberlist",
+    "pages/other/zjcontent/zjcontent",
+    "pages/other/xqwj/xqwj",
+    "pages/other/stuxqwj/stuxqwj",
+    "pages/other/manual/manual",
+    "pages/other/random/random",
+    "pages/other/rushanswer/rushanswer",
+    "pages/other/pershow/pershow",
+    "pages/other/stussqd/stussqd",
+    "pages/other/stuptqd/stuptqd",
+    "pages/other/xqktbxend/xqktbxend",
+
+    "components/cb-modal/cb-modal",
+    "components/ec-canvas/ec-canvas",
+    "components/no-data/no-data",
+    "components/picker/picker",
+    "components/class-room-bar/class-room-bar",
+    "components/activity-comm/activity-comm",
+    "components/picker-data/picker-data"
+  ],
+  "subpackages": [
+    {
+      "root": "packageOne",
+      "name": "packageOne",
+      "pages": [
+        "create/createssqd/createssqd",
+        "create/createsgdj/createsgdj",
+        "create/createktbx/createktbx",
+        "create/createwj/createwj",
+        "create/addques/addques",
+
+        "me/contactus/contactus",
+        "me/mycoll/mycoll",
+        "me/traineesignup/traineesignup",
+        "me/updatelog/updatelog",
+        "me/peredit/peredit"
+
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/tabbar/home/home": {
+      "network": "all",
+      "packages": ["packageOne"]
+    },
+    "pages/tabbar/percenter/percenter": {
+      "packages": ["packageOne"]
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {
+    "cb-modal": "components/cb-modal/cb-modal",
+    "cb-no-data": "components/no-data/no-data",
+    "cb-picker": "components/picker/picker",
+    "cb-class-room-bar": "components/class-room-bar/class-room-bar",
+    "cb-parser": "components/parser/parser"
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0033cc",
+    "navigationBarTitleText": "布道师",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#0033cc",
+    "backgroundColor": "#FFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/tabbar/home/home",
+        "text": "首页",
+        "iconPath": "images/bar_home.png",
+        "selectedIconPath": "images/bar_home_s.png"
+      },
+      {
+        "pagePath": "pages/tabbar/courselist/courselist",
+        "text": "课堂",
+        "iconPath": "images/bar_course.png",
+        "selectedIconPath": "images/bar_course_s.png"
+      },
+      {
+        "pagePath": "pages/tabbar/msgcenter/msgcenter",
+        "text": "消息",
+        "iconPath": "images/bar_msg.png",
+        "selectedIconPath": "images/bar_msg_s.png"
+      },
+      {
+        "pagePath": "pages/tabbar/livelist/livelist",
+        "text": "直播",
+        "iconPath": "images/bar_live.png",
+        "selectedIconPath": "images/bar_live_s.png"
+      },
+      {
+        "pagePath": "pages/tabbar/percenter/percenter",
+        "text": "我的",
+        "iconPath": "images/bar_me.png",
+        "selectedIconPath": "images/bar_me_s.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

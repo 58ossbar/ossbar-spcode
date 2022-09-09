@@ -1,0 +1,4 @@
+<!--pages/tabbar/msgcenter/msgcenter.wxml-->
+<view  class="container">
+  <image class="msgImg" mode="widthFix" src="/images/message.png"></image>
+</view>

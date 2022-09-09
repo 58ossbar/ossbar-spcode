@@ -1,0 +1,62 @@
+<!--pages/other/manual/manual.wxml-->
+<view class="container">
+  <block wx:if="{{stepState && stepState == '0'}}">
+    <block wx:if="{{ traineesList && traineesList.length > 0 }}">
+      <view class="per_box" >
+        <label  wx:for="{{traineesList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+          <view class="per_item" data-currindex="{{index0}}" bindtap="toCheckBox">
+            <view class="per_image">
+              <image wx:if="{{item0.traineePic}}" src="{{item0.traineePic}}"></image>
+              <image wx:else src="../../../images/perdefault.jpg"></image>
+            </view>
+            <checkbox value="{{index0}}" checked="{{item0.isChecked}}" ></checkbox>
+            <text class="hide_single">{{item0.traineeName}}</text>
+          </view>
+        </label>
+      </view>
+      <view class="btn_line block_half "  bindtap="{{manualStuList && manualStuList.length>0?'stepStateChange':''}}" data-num='1'>
+        <button class="{{manualStuList && manualStuList.length>0?'':'bg_gray'}}">已选取{{manualStuList.length}}位同学参与活动</button>
+      </view>
+    </block>
+    <block wx:else>
+      <!-- 暂无数据begin -->
+      <cb-no-data type="2" isShow="{{true}}" label="当前课堂暂无学员"></cb-no-data>
+      <!-- 暂无数据end -->
+    </block>
+
+  </block>
+
+  <block wx:if="{{stepState && stepState == '1'}}">
+    <view class="rush_answer_two_labels">
+      <!-- <view class="label_input_wrapper"><input class="label_input" placeholder='一句话描述本次课堂活动，不填写也没有关系哦' name=""></input></view> -->
+      <view class="label_item2">已有{{manualStuList.length}}人参与活动</view>
+      <view>可以点击头像评分或者统一评分</view>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="rush_answer_two_scroll">
+      <view class="rush_answer_two_list_wrapper">
+        <view wx:if="{{manualStuList && manualStuList.length>0}}" wx:for="{{manualStuList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="rush_answer_two_list_inner">
+          <view class="rush_answer_two_list_image">
+            <block wx:if="{{item0.traineePic}}">
+              <image class="width-all height-all" bindtap="toAddScore" data-name="score_{{index0}}" src="{{item0.traineePic}}"></image>
+            </block>
+            <block wx:else>
+              <image class="width-all height-all" src="/images/perdefault.jpg"></image>
+            </block>
+            <view class="rush_answer_stu_score bg_orange">{{item0.score}}</view>
+          </view>
+          <view class="rush_answer_two_list_name hide_single ">{{item0.traineeName}}</view>
+          <view class="rush_answer_stu_delbtn"><text class="iconfont iconcha-fill-circle w_red" style="font-size:34rpx;" catchtap="toDel"  data-currindex="{{index0}}"></text></view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="rush_answer_two_btns">
+      <button class="rush_answer_two_btn_all {{manualStuList && manualStuList.length>0?'':'bg_gray'}}" bindtap="{{manualStuList && manualStuList.length>0?'toAddScore':''}}" data-name="scoreAll">统一评分</button>
+      <button class="rush_answer_two_btn_end {{manualStuList && manualStuList.length>0?'':'bg_gray'}}" bindtap="{{manualStuList && manualStuList.length>0?'toSave':''}}" >完成</button>
+    </view>
+  </block>
+
+  <!-- 下拉选择器begin -->
+  <cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+  <!-- 下拉选择器end -->
+
+</view>

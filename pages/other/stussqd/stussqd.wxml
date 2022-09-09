@@ -1,0 +1,19 @@
+<!--pages/other/stussqd/stussqd.wxml-->
+<view class="container">
+  <view class="ssqd_header">
+    <text class="w_gray">{{isSigned?'签到成功':'通过滑动输入正确手势完成签到'}}</text>
+  </view>
+  <!-- canvas生成是图片，用于解决层级问题 begin -->
+  <view class="ssqd_center" hidden="{{!modalIsShow || !canvasTempFilePath}}">
+    <image wx:if="{{canvasTempFilePath}}" src="{{canvasTempFilePath}}"></image>
+  </view>
+  <!-- canvas生成是图片，用于解决层级问题 end -->
+  <!-- canvas begin -->
+  <view class="ssqd_center" hidden="{{modalIsShow && canvasTempFilePath}}">
+    <canvas wx:if="{{isUseNewCanvas}}" type="2d" canvas-id="canvasId" id="canvasId" class="ssqd_center_canvas" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd"></canvas>
+    <canvas wx:else canvas-id="canvasId" id="canvasId" class="ssqd_center_canvas" bindtouchstart="onTouchStart" bindtouchmove="onTouchMove" bindtouchend="onTouchEnd"></canvas>
+  </view>
+  <!-- canvas end -->
+
+
+</view>

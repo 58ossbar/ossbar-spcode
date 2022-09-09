@@ -1,0 +1,85 @@
+<!--pages/other/resource/resource.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?( (sourseFrom && sourseFrom=='setActivityChapter'?containerBottom:128) + fixedBottom*2):(sourseFrom && sourseFrom=='setActivityChapter'?containerBottom:'128')}}rpx;">
+
+  <view class="search_line"   >
+    <view class="search_box">
+      <input placeholder='输入搜索' name="chapterName" value="{{chapterName}}" bindinput="bindinput"></input>
+      <view class="search_logo" bindtap="searchInput">
+        <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+      </view>
+    </view> 
+  </view>
+
+  <!-- 章节列表begin -->
+
+  <!-- 章节名称动begin -->
+  <view class="list" wx:if="{{subjectInfo && subjectInfo.children && subjectInfo.children.length>0}}">
+    <checkbox-group >
+      <block wx:for="{{subjectInfo.children}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+        <view class="unit unit2" data-currindex="{{index0}}" hidden="{{!item0.show}}">
+          
+          <view wx:if="{{item0.level == 1}}" class="first_line first_line_one">
+            <checkbox wx:if="{{isShowChaVis}}" data-currindex="{{index0}}" catchtap="checkboxOne"  value="{{index0}}" checked="{{item0.isTraineesVisible && item0.isTraineesVisible == 'Y'}}"></checkbox>
+
+            <checkbox wx:if="{{sourseFrom && sourseFrom=='setActivityChapter'}}" data-currindex="{{index0}}" catchtap="setActivityChapterCheckBox" disabled="{{onlyWatchActivityInfo}}"  value="{{index0}}" checked="{{currActivityChapterId && currActivityChapterId==item0.chapterId}}" ></checkbox>
+
+            <view class="title_line">
+              <view catchtap="{{sourseFrom && sourseFrom=='setActivityChapter'?'':'toZjContent'}}"  class="title hide_single  {{(item0.hasActivity || item0.hasVideo)?'w_blue':''}}  " data-chapterid="{{item0.chapterId}}"   data-currindex="{{index0}}">{{item0.chapterName}}</view>
+              <view class="btn" wx:if="{{(subjectInfo.children[index0+1]) && (item0.chapterId == subjectInfo.children[index0+1].parentId)}}" catchtap="toFoldChapter" data-currindex="{{index0}}">
+                <view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+              </view>
+
+            </view>
+          </view>
+          <view wx:if="{{item0.level == 2 }}" class="first_line first_box bg_white">
+            <checkbox  wx:if="{{isShowChaVis}}" data-currindex="{{index0}}" catchtap="checkboxTwo" value="{{index0}}" checked="{{item0.isTraineesVisible && item0.isTraineesVisible == 'Y'}}"></checkbox>
+
+            <checkbox wx:if="{{sourseFrom && sourseFrom=='setActivityChapter'}}" data-currindex="{{index0}}" catchtap="setActivityChapterCheckBox" disabled="{{onlyWatchActivityInfo}}"  value="{{index0}}" checked="{{currActivityChapterId && currActivityChapterId==item0.chapterId}}" ></checkbox>
+
+            <view class="title_line  {{ ( ( (index0+1) == (subjectInfo.children.length) ) || ( (subjectInfo.children[index0+1]) && (subjectInfo.children[index0+1].level == 1) ) )?'border_bottom_none':'' }}"> 
+              <view class="title hide_single  {{(item0.hasActivity || item0.hasVideo)?'w_blue':''}}  " data-chapterid="{{item0.chapterId}}"  catchtap="{{sourseFrom && sourseFrom=='setActivityChapter'?'':'toZjContent'}}">{{item0.chapterName}}</view>
+              <view class="btn" wx:if="{{(subjectInfo.children[index0+1]) && (item0.chapterId == subjectInfo.children[index0+1].parentId)}}" catchtap="toFoldChapter" data-currindex="{{index0}}">
+                <view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+              </view>
+
+            </view>
+          </view>
+          <view class="sec_box bg_white" wx:if="{{item0.level == 3 }}">
+            <view class="sec_line">
+              <checkbox  wx:if="{{isShowChaVis}}" data-currindex="{{index0}}" catchtap="checkboxThree" value="{{index0}}" checked="{{item0.isTraineesVisible && item0.isTraineesVisible == 'Y'}}"></checkbox>
+
+              <checkbox wx:if="{{sourseFrom && sourseFrom=='setActivityChapter'}}" data-currindex="{{index0}}" catchtap="setActivityChapterCheckBox" disabled="{{onlyWatchActivityInfo}}" value="{{index0}}" checked="{{currActivityChapterId && currActivityChapterId==item0.chapterId}}" ></checkbox>
+
+              <view class="title_line  {{ ( ( (index0+1) == (subjectInfo.children.length) ) || ( (subjectInfo.children[index0+1]) && (subjectInfo.children[index0+1].level == 1) ) )?'border_bottom_none':'' }}" data-currindex="{{index0}}" data-chapterid="{{item0.chapterId}}" catchtap="{{sourseFrom && sourseFrom=='setActivityChapter'?'':'toZjContent'}}"> 
+                <view class="title hide_single  {{(item0.hasActivity || item0.hasVideo)?'w_blue':''}}  ">{{item0.chapterName}}</view>
+              </view>
+            </view>
+          </view>
+
+
+        </view>
+      </block>
+    </checkbox-group>
+  </view>
+  <!-- 章节名称动end -->
+
+  <!-- 暂无数据begin  isShow="{{(!subjectInfo || !subjectInfo.children || subjectInfo.children<1)}}  -->
+  <cb-no-data img="creatkc.png" label="当前暂无资源" isShow="{{noDataResIsShow}}"></cb-no-data>
+  <!-- 暂无数据end -->
+  <!-- 章节列表end -->
+
+  <block wx:if="{{sourseFrom && sourseFrom=='setActivityChapter' && !onlyWatchActivityInfo}}">
+    <view  class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="setActivityChapterCancel">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="setActivityChapterSave"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>完成</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+  </block>
+
+  <!-- 底部菜单栏 begin -->
+
+  <cb-class-room-bar isShowIndex="0" wx:if="{{!isShowChaVis && (!sourseFrom || (sourseFrom && sourseFrom !='setActivityChapter') )}}"></cb-class-room-bar>
+  <!-- 底部菜单栏 end -->
+
+</view>

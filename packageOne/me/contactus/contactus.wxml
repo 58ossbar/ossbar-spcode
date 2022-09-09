@@ -1,0 +1,22 @@
+<!--packageOne/me/contactus/contactus.wxml-->
+<view class="container">
+
+  <view class="bg_white fixed_marginb">
+    <view class="map_wrapper bg_gray_light">
+      <map id="myMap" class="map" longitude="{{companyInfo.longitude}}" latitude="{{companyInfo.latitude}}" markers="{{companyInfo.markers}}" circles="{{companyInfo.circles}}" scale="{{companyInfo.scale}}" show-location="{{true}}" include-points="{{true}}"></map>
+    </view>
+    <view class="form_list">
+
+      <view class="form_line">
+        <view class="key_name">联系电话</view>
+        <view class="value_box">
+          <view class="value_extend hide_single">
+            <text>{{companyInfo.mobile || '暂无'}}</text>
+          </view>
+        </view>
+      </view>
+     
+    </view>
+  </view>
+
+</view>

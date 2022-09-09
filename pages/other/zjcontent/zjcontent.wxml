@@ -1,0 +1,38 @@
+<!--pages/other/zjcontent/zjcontent.wxml-->
+
+<view class="container" mut-bind:touchstart="intoOtherChapterTouchStart" mut-bind:touchmove="intoOtherChapterTouchMove" mut-bind:touchend="intoOtherChapterTouchEnd">
+  <view class="column_title bg_white">
+    <view class="title hide_single"><text>I</text>{{chapterInfo.chapterName}}</view>
+  </view>
+  <!-- tab切换begin    -->
+  <scroll-view  scroll-x="{{true}}" class="slide_box fixed_marginb"  wx:if="{{tabList && tabList.length>0}}" scroll-into-view="resgroup_{{currTabResIndex}}">
+    <view  wx:for="{{tabList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="slide_menu {{index0 == currTabResIndex?'active':''}}" catchtap="toTab" data-currindex="{{index0}}" data-resgroupid="{{item0.resgroupId}}" id="resgroup_{{index0}}">
+      <checkbox hidden="{{!showTabSetting  }}"  checked="{{item0.checked}}" catchtap="tabVisibleCheckBox" data-currindex="{{index0}}" ></checkbox>
+      <text><!-- 课程内容 -->{{item0.resgroupName}}</text>
+      <view class="tips" wx:if="{{item0.num && item0.num !=0}}"><!-- 5 -->{{item0.num}}</view>
+    </view>
+  </scroll-view>
+  <!-- tab切换end -->
+  <!-- 内容显示begin -->
+
+  <!-- <view mut-bind:touchstart="parserScroll" mut-bind:touchmove="parserScroll" mut-bind:touchend="parserScroll"  >   catchscroll="parserScroll"  -->
+  <scroll-view scroll-y="{{true}}" class="scroll_view"  bindscroll="{{classroomIdentity && classroomIdentity =='teacher' ? 'parserScroll' : 'scrollViewScroll'}}" >
+    <block wx:if="{{tabList && tabList[currTabResIndex] && tabList[currTabResIndex].dictCode == '2'}}">
+      <!-- 活动列表页 活动tab的 显示 begin -->
+      <cb-activity-comm chapterIdFromCha="{{chapterId}}"></cb-activity-comm>
+      <!-- 活动列表页 end -->
+    </block>
+    <block wx:else>
+      <!-- mut-bind:touchstart="parserScroll" mut-bind:touchmove="parserScroll" mut-bind:touchend="parserScroll" -->
+      <view hidden="{{!resContent}}" class="chapter_content">
+        <cb-parser id="chapterParser" html="{{resContent}}" gesture-zoom lazy-load selectable show-with-animation use-anchor bindparserScrollTouch="parserScrollTouch" bindparserNotScrollTouch="parserNotScrollTouch"
+        bindended="{{classroomIdentity && classroomIdentity =='teacher' ? '' : 'ended'}}"></cb-parser>
+      </view>
+    </block>
+
+  </scroll-view>
+  <!-- </view> -->
+
+  <!-- 内容显示end -->
+
+</view>

@@ -1,0 +1,185 @@
+/* pages/other/resource/resource.wxss */
+.container {
+  padding-bottom: 120rpx;
+  position: relative;
+}
+.search_line {
+  width:100%;
+  background-color:#0033cc;
+  padding:10rpx 20rpx;
+  box-sizing: border-box;
+}
+.search_line .search_box {
+  width:calc(100vw - 40rpx);
+}
+.list {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.first_line,
+.sec_line {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.sec_line {
+  margin-left: -20rpx;
+}
+.first_line .title_line,
+.sec_line .title_line {
+  /* flex: 1; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 10rpx;
+  box-sizing: border-box;
+  border-bottom: #efeef4 solid 2rpx; 
+
+  justify-content: space-between;
+}
+.first_box  .title_line {
+  margin-left: 0rpx;
+}
+.sec_line .title_line {
+  width: 100%;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+/* .sec_box .sec_line:last-child .title_line {
+  border-bottom: none;
+} */
+
+.title_line .title {
+  /* flex: 1; */
+  width: calc(100% - 120rpx);
+  font-weight: bold;
+  box-sizing: border-box;
+  overflow: hidden; 
+  padding-left:10rpx
+}
+
+.first_line_one .title_line {
+  /* flex: 1; */
+  width: calc(100% - 10rpx);
+}
+
+.sec_line .title_line .title {
+  font-weight: inherit;
+  padding-right: 20rpx;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(200rpx);
+  transform: translateX(200rpx);
+  margin-left: -200rpx
+}
+.title_line .btn {
+  width: 100rpx;
+  height: 80rpx;
+  padding:20rpx;
+  box-sizing: border-box;
+  margin-left: 10rpx;
+
+  /* background-color: red; */
+}
+.title_line .btn image {
+  display: block;
+}
+/* .title_line  */
+.slide_btn {
+  width: auto;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  -webkit-transform: translateX(200rpx);
+  transform: translateX(200rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+/* .title_line  */
+.slide_btn view {
+  width: 100rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #FFF;
+}
+
+/* .touch-move-active .sec_line .title_line .title, */
+.touch-move-active .slide_btn {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.sec_box {
+  padding-left: 80rpx;
+  box-sizing: border-box;
+}
+.first_box{
+  padding-left: 40rpx;
+}
+.first_box .title_line .title{
+  font-weight: inherit;
+}
+/*  重写 checkbox 样式  */
+checkbox .wx-checkbox-input{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.sec_line checkbox .wx-checkbox-input{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+
+
+.unit2{
+  width: calc(100% + 200rpx);
+  display: flex;
+}
+.unit2 .first_line,
+.unit2 .sec_box{
+  width: calc(100% - 200rpx);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.touch-move-active2  .first_line,
+.touch-move-active2  .sec_box{
+  -webkit-transform: translateX(-200rpx);
+  transform: translateX(-200rpx);
+}
+.unit2  .slide_btn {
+  -webkit-transform: translateX(-200rpx);
+  transform: translateX(-200rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.touch-move-active2  .slide_btn {
+  -webkit-transform: translateX(-200rpx);
+  transform: translateX(-200rpx);
+}
+
+.border_bottom_none {
+  border-bottom: none !important;
+}
+
+.top_tool {
+  padding: 10rpx 0 10rpx 20rpx;
+  background-color: #0033cc;
+}
+
+.sec_box .title_line .title{
+  width: 100%;
+}
+
+.side_tool_end{
+  width: 200rpx !important;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.side_tool_end .icon_wrapper {
+  width: auto;
+}

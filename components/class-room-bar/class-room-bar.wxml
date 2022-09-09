@@ -1,0 +1,11 @@
+<!--components/class-room-bar/class-room-bar.wxml-->
+<!--课堂里面的 菜单栏-->
+<view class="footMenu_box" style="bottom:{{fixedBottom}}px;">
+  <view class="footMenu {{index0 == isShowIndex?'active':''}}" wx:for="{{footMenuList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" data-currindex="{{index0}}" bindtap="{{index0 == isShowIndex && !isShowIndexNav?'':'toTapPage'}}">
+    <view class="icon_wrapper img_d"><text class="iconfont {{item0.icon}}" style="font-size:52rpx;"></text></view>
+    <view class="icon_wrapper img_s"><text class="iconfont {{item0.icon}} w_blue" style="font-size:52rpx;"></text></view>
+    {{item0.name}}
+  </view>
+</view>
+<!--固定到底部 的  底部占位 -->
+<view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>

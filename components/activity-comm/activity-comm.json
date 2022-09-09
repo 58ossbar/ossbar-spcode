@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "cb-picker-data": "/components/picker-data/picker-data"
+  }
+}

@@ -1,0 +1,11 @@
+<!--pages/other/activity/activity.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(128 + fixedBottom*2):'128'}}rpx;" >
+  
+  <!-- 老师版活动列表页 begin -->
+  <cb-activity-comm id="activityComm"></cb-activity-comm>
+  <!-- 老师版活动列表页 end -->
+  
+  <!-- 底部菜单栏 begin -->
+  <cb-class-room-bar isShowIndex="1"></cb-class-room-bar>
+  <!-- 底部菜单栏 end -->
+</view>

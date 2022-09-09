@@ -1,0 +1,52 @@
+    4大主页
+    "pages/tabbar/home/home", 首页
+    "pages/tabbar/courselist/courselist", 课堂
+    "pages/tabbar/msgcenter/msgcenter",  消息
+    "pages/tabbar/percenter/percenter",  我的
+
+    course下（课堂列表模块）
+    "pages/course/codejoin/codejoin",  加入课堂1：输入邀请码
+    "pages/course/createkc/createkc",  创建课堂
+
+    classroomx下  （课堂 模块）
+    "pages/classroom/activity/activity",  课堂-活动页面主页面
+    "pages/classroom/member/member",  课堂-成员页面    
+    "pages/classroom/resource/resource",  课堂-资源页面
+    "pages/classroom/message/message",  课堂-消息页面
+   
+    other下 （其它类的）
+    "pages/other/notice/notice"  创建通知页面（发送）
+    "pages/other/memberlist/memberlist"  成员列表页面（用于发送消息，勾选分组等）
+    "pages/other/groupadmin/groupadmin"  分组管理
+    "pages/other/rushanswer/rushanswer"  抢答页面
+    "pages/other/random/random"  随机选人页面
+    "pages/other/manual/manual"  手动选人页面
+    "pages/other/zjcontent/zjcontent",  章节详情页面 
+    "pages/other/pershow/pershow"  成员详情
+    "pages/other/xqwj/xqwj"  详情-问卷
+    "pages/other/stuxqwj/stuxqwj"  问卷学生端提交界面
+    "pages/other/stussqd/stussqd"  学生端手势签到界面
+    "pages/other/stuptqd/stuptqd"  学生端普通签到打卡界面
+    "pages/other/xqktbxend/xqktbxend",  课堂表现结束页
+
+
+    分包加载
+
+
+      create下（所有创建页面在该目录下）
+    "packageOne/create/createwj/createwj",  创建问卷调查
+    "packageOne/create/addques/addques",  问卷添加试题页面
+    "packageOne/create/createktbx/createktbx",  创建课堂表现
+    "packageOne/create/createssqd/createssqd",  创建手势签到
+    "packageOne/create/createsgdj/createsgdj",  创建手工签到
+    
+    me下 （我的模块）
+    "packageOne/me/contactus/contactus", 联系我们
+    "packageOne/me/mycoll/mycoll",  我的收藏
+    "packageOne/me/updatelog/updatelog",  更新日志
+    "packageOne/me/traineesignup/traineesignup", 我要报名
+    "me/peredit/peredit", 修改学员信息
+
+
+
+

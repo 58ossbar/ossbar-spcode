@@ -1,0 +1,9 @@
+/* packageOne/me/contactus/contactus.wxss */
+.map_wrapper{
+  width: 100%;
+  height: 80vh;
+}
+.map_wrapper .map{
+  width: 100%;
+  height: 80vh;
+}

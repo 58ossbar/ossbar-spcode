@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cb-ec-canvas": "/components/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "成员详情"
+}

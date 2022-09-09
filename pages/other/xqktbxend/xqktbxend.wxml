@@ -1,0 +1,45 @@
+<!--pages/other/xqktbxend/xqktbxend.wxml-->
+<view>
+  <view class="column_title bg_white fixed_marginb">
+    <view class="title hide_single">
+      <text wx:if="{{currEditActivity && currEditActivity.activityTitle}}">{{currEditActivity.activityTitle}}</text>
+      <text wx:else>历史记录</text>
+    </view>
+  </view>
+
+  <view class="list bg_white" wx:if="{{memberList && memberList.length>0}}">
+    <view class="msgbox_wrapper {{index0<memberList.length-1 ?'border-bottom':''}}" wx:for="{{memberList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <view class="msgbox"  >
+        <checkbox wx:if="{{isRedo}}" value="{{index0}}" data-currindex="{{index0}}" checked="{{item0.isChecked}}" bindtap="isRedoCheckBoxChlick"></checkbox>
+        <view  class="img_box">
+          <view class="head_img bg_gray_light"><image src="{{item0.traineePic}}"></image></view>
+        </view>
+        <view  class="cont_box overflow_hidden" data-currindex="{{index0}}" catchtap="{{item0.historyPaperList && item0.historyPaperList.length>0?'toFolderHistory':''}}">
+          <view class="trainee_name_box hide_single">
+            <text wx:if="{{item0.traineeName}}">{{item0.traineeName}}</text>
+            <text wx:else>暂无</text>
+          </view>
+          <view class=" font_s_g trainee_name_box jobnum_time_box hide_single">
+            <text wx:if="{{item0.jobNumber}}">{{item0.jobNumber}}</text>
+            <text wx:elif="{{item0.mobile}}">{{item0.mobile}}</text>
+            <text wx:else>暂无</text>
+
+            <view class="align-center-vertical">
+              <text>分值：</text>
+              <text wx:if="{{item0.empiricalValue}}">{{item0.empiricalValue}}</text>
+              <text wx:else>0</text>
+            </view>
+            
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <!-- 暂无数据 begin -->
+    <cb-no-data type="2" label="暂无学员抢答" isShow="{{!memberList || (memberList && memberList.length < 1)}}"></cb-no-data>
+    <!-- 暂无数据 end-->
+  </view>
+
+</view>

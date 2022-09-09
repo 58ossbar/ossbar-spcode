@@ -1,0 +1,53 @@
+<!--pages/other/stuptqd/stuptqd.wxml-->
+<view class="container ">
+  <view class="ptqd_contain bg_white {{isSign?'hide_animation':''}}">
+  <!-- hidden="{{isSign}}" -->
+    <!-- 未签到时地理位置显示begin -->
+    <view class="location_wrapper" >
+      <view class="w_green" wx:if="{{dataForm.areaTitle}}">
+        <view class="iconfont icondiliweizhi w_green" style="font-size:60rpx;"></view>
+        <view class="location_wrapper_jtwz">{{dataForm.areaTitle}}</view>
+        <view>{{dataForm.area}}</view>
+      </view>
+      <view wx:if="{{isGetingLocation && !dataForm.areaTitle}}">
+        <view class="iconfont iconlocation" style="font-size:60rpx;"></view>
+        <view class="location_wrapper_jtwz">定位中</view>
+      </view>
+      <view wx:if="{{!isGetingLocation}}" bindtap="getLocation">
+        <view class="iconfont icondiliweizhi w_red" style="font-size:60rpx;"></view>
+        <view class="location_wrapper_jtwz w_red" >定位失败<text class="iconfont iconshuaxin w_blue"></text></view>
+      </view>
+    </view>
+    <!-- 未签到时地理位置显示end -->
+    <view class="ring_wraper">
+      <!-- 圆环begin -->
+      <view class="bg_orange ring1" bindtap="{{isSign?'':'toSign'}}">
+        <view class="bg_white ring2 " hidden="{{isSign}}">
+          <view class="ring_time">{{currTime}}</view>
+          <view class="ring_label">签到</view>
+        </view>
+        <view hidden="{{!isSign}}">
+          <!-- 白色 钩钩 -->
+          <icon color="#ffffff" type="success_no_circle" size="70"></icon>
+        </view>
+      </view>
+      <!-- 圆环end -->
+      <view hidden="{{!isSign}}" class="w_blue qdlabel">签到成功</view>
+      <!-- 已签到后 位置、时间、备注等详情显示begin -->
+      <view hidden="{{!isSign}}" class="remark_wrapper">
+        <view class="remark_inner"><view class="w_gray">时间</view><view>{{dataForm.time}}</view></view>
+        <view class="remark_inner">
+          <view class="w_gray">位置</view>
+          <view class="remark_loca">
+            <text wx:if="{{dataForm.areaTitle}}">{{dataForm.areaTitle}}</text><text wx:else>暂无</text>
+          </view>
+        </view>
+        <view class="remark_inner"><view class="w_gray">备注</view>
+          <image bindtap="toPreviewImg" class="remark_img" mode="scaleToFill" src="{{dataForm.img}}"></image>
+        </view>
+      </view>
+      <!-- 已签到后 位置、时间、备注等详情显示end -->
+    </view>
+  </view>
+</view>
+

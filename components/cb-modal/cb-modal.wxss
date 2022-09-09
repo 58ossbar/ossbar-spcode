@@ -1,0 +1,83 @@
+/* components/cb-modal/cb-modal.wxss */
+.modal-mask{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(0,0,0,0.5);
+  /* 使水平、垂直居中 begin */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* 使水平、垂直居中end */
+  z-index: 9999;
+  opacity: 0;
+  pointer-events:none;
+  visibility: hidden;
+}
+.modal-show{
+  opacity: 1;
+  pointer-events:auto;
+  visibility: visible;
+}
+.modal-body{
+  background-color: #fff;
+  width: 80%;
+  border-radius: 10rpx;
+}
+.modal-scroll{
+  max-height: 80vh;
+}
+.modal-title{
+  text-align: center;
+  padding: 24rpx 24rpx 0 24rpx;
+  box-sizing: border-box;
+}
+.modal-content{
+  text-align: center;
+  padding: 24rpx;
+  box-sizing: border-box;
+  color: #a3a3a3;
+  width: 100%;
+
+}
+.modal-text{
+  padding-top: 16rpx ;
+  padding-bottom: 16rpx;
+}
+.modal-textarea{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2rpx solid #efeef4 ;
+  /* #f6f6f6 */
+  overflow-y: scroll;
+  text-align: left;
+  padding: 12rpx;
+  box-sizing: border-box;
+  height: 100rpx;
+}
+.modal-footer{
+  display: flex;
+  border-top: 2rpx solid #efeef4;
+}
+.cancel-btn,.confirm-btn,.dialog-btn{
+  flex: 1;
+  text-align: center;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.cancel-btn{
+  border-right: 2rpx solid #efeef4;
+  color: #000;
+}
+.confirm-btn,.dialog-btn{
+  color:#0033cc ;
+}
+.dialog-btn{
+  background-color: #fff;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  box-sizing: border-box;
+}

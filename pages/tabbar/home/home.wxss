@@ -1,0 +1,233 @@
+/* pages/tabbar/home/home.wxss */
+.banner_box {
+  width: 100%;
+  height:320rpx;
+  background-color:#FFF;
+  position: relative;
+}
+.banner_box .banner_img {
+  width:100%;
+  height:320rpx;
+}
+.banner_box .banner_no_img {
+  background-color: #e7e7e7;
+}
+
+.banner_box .top_tool {
+  top: 20rpx;
+  left: 0;
+  z-index: 5;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.tabs .tabs_nemu {
+  flex: initial;
+  width: auto;
+  padding-left: 32rpx;
+}
+.more {
+  height: 38px;
+  line-height: 38px;
+  padding: 0 20rpx;
+
+  flex:1;
+  text-align: right;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.more .icon_wrapper{
+  width: auto;
+}
+.more .icon_wrapper text{
+  margin-top: 4rpx;
+}
+/* 将.ad_box和 .ad_text  移动到了app.wxss里面*/
+
+
+.index_menu{
+  padding-right: 40rpx;
+  padding-left: 40rpx !important;
+}
+.index_tips{
+  position: absolute !important;
+  top: 16rpx !important;
+  right: 0rpx;
+}
+
+
+.banner-wave-wrapper{
+  height: 46rpx;
+  width: 100%;
+  /* overflow-x: hidden; */
+  position: absolute;
+  bottom: -2rpx;
+  /* bottom: -13rpx; */
+  box-sizing: border-box;
+}
+.wave_a,
+.wave_b{
+  /* width: 400%; */
+  width: 100%;
+  height:30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+
+  background-size: 400% 100%;
+}
+
+.wave_a{
+  z-index: 2;
+  animation: wave_a 25s linear infinite;
+}
+.wave_b{
+  z-index: 1;
+  animation: wave_b 60s linear infinite;
+}
+@keyframes  wave_a{
+  /* 0% { left:-40rpx ; }
+  100% { left: -1000rpx;} */
+
+  0% { background-position :-40rpx 100%; }
+  100% { background-position: -1000rpx 100%;}
+}
+@keyframes  wave_b{
+  /* 0% { left:-0rpx ;}
+  100% { left: -1500rpx; } */
+
+  0% { background-position: -0 100%;}
+  100% { background-position: -1500rpx 100%; }
+}
+
+.class_box .class_info{
+  overflow: hidden;
+}
+
+action-sheet-item{
+  padding: 24rpx 0;
+}
+
+.class_box .class_tutor .tutor .tutor_img{
+  background-color: #f5f5f5;
+  width: 60rpx;
+}
+.class_box {
+  width: 50%;
+  /* width: calc(100% - 270rpx -40rpx) ; */
+  box-sizing: border-box;
+}
+
+.class_box .class_tutor .tutor .tutor_name {
+  box-sizing: border-box;
+  width: calc(100% - 60rpx);
+}
+
+/* 我要测评 样式 begin */
+.testListClass .list_class {
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.testListClass .class_box,
+.testListClass .list_class .btn_bar,
+.testListClass .papers_list_img_wrapper{
+  height: 120rpx;
+}
+.testListClass .class_box .class_title{
+  height: 80rpx;
+  line-height: 40rpx;
+}
+.testListClass .class_box .class_info{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-top: 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+}
+.testListClass .class_box .class_info.stu_no .icon_wrapper {
+  width: 40rpx;
+  padding: 2rpx 4rpx 2rpx 0;
+  box-sizing: border-box;
+}
+.testListClass .papers_list_img_wrapper{
+  box-sizing: border-box;
+  position: relative;
+  width: 100rpx;
+  /* height: 120rpx; */
+  padding: 70rpx 0 30rpx 30rpx;
+  float: left;
+  /* margin-right: 20rpx; */
+  background: linear-gradient(to top, rgba(204, 204, 204, .5) 1%, rgba(204, 204, 204, .1), #ffffff);
+  border-radius: 8rpx;
+  box-shadow: inset 0 0 0 2rpx #cccccc;
+  font-size: .857em;
+  background-size: cover;
+  white-space: nowrap;
+  font-weight: 700;
+  color: rgba(0, 155, 255, 1);
+
+}
+.papers_list_img_wrapper::before{
+  content: '';
+  display: block;
+  width: 30rpx;
+  height: 30rpx;
+  background: linear-gradient(-130deg, #ffffff 20rpx, rgba(0, 155, 255, .7) 0);
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+}
+.papers_list_img_wrapper::after{
+  box-sizing: border-box;
+  content: '—';
+  color: #cccccc;
+  font-weight: 700;
+  font-size: 1.142em;
+  display: block;
+  width: 40rpx;
+  height: 4rpx;
+  background: #cccccc;
+  position: absolute;
+  top: 30rpx;
+  left: 10rpx;
+  border-radius: 40rpx;
+}
+.papers_list_img_wrapper img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.toTopBtn{
+  display: inline-block;
+  /* padding: 50rpx; */
+  width: 80rpx;
+  height: 80rpx;
+  z-index: 30;
+  position: fixed;
+  text-align: center;
+  right: 20rpx;
+  bottom: 40rpx;
+  border-radius: 50% 0 50% 50%;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.toTopBtnLabel{
+  color: #fff;
+  font-style: italic;
+  font-size: 20rpx;
+  transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg); 
+}

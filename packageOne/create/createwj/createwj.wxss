@@ -1,0 +1,14 @@
+/* packageOne/create/createwj/createwj.wxss */
+.switch_line {
+  margin-bottom: 0;
+}
+
+.switch_line .switch_name {
+  color: #353535;
+  font-weight: inherit;
+}
+
+.key_name text {
+  margin-left: 10rpx;
+  color: red;
+}

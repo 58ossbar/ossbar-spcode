@@ -1,0 +1,53 @@
+<!--pages/other/memberlist/memberlist.wxml-->
+<view class="container">
+  <view class="search_line">
+    <view class="search_box">
+      <input placeholder='输入搜索'  name="traineeName" value="{{traineeName}}" bindinput="bindinput"></input>
+      <view class="search_logo" bindtap="searchInput">
+        <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+      </view>
+    </view> 
+  </view>
+  
+  <view class="listtop" wx:if="{{traineeList && traineeList.length>0}}">
+    <label bindtap="{{onlyWatchActivityInfo?'':'allCancel'}}">
+      <checkbox value="" checked="{{!checkBtn}}" disabled="{{onlyWatchActivityInfo}}"></checkbox>
+      <view class="chek_title" hidden="{{!checkBtn}}">全选</view>
+      <view class="chek_title" hidden="{{checkBtn}}">取消</view>
+    </label>
+    <view class="memberNo">共{{traineeList.length}}人/已选{{checkedNum}}人</view>
+    <view wx:if="{{isShowConfirmBtns}}" hidden="{{((classroomState && classroomState =='3')  )}}" class="dec_btn w_blue" bindtap="toConfirm">确定</view>  
+
+  </view>
+  <!-- 学员列表begin -->
+  <view class="list bg_white" wx:if="{{traineeList && traineeList.length>0}}">
+    <checkbox-group bindchange="checkboxChange" >
+      <label wx:for="{{traineeList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0"  data-currindex="{{index0}}" class="msgbox_label ">
+        <view class="msgbox ">
+          <checkbox value="{{index0}}" checked="{{item0.isChecked}}" disabled="{{onlyWatchActivityInfo}}"></checkbox>
+          <view class="img_box">
+            <view class="head_img bg_gray_light"><image src="{{item0.traineePic}}"></image></view>
+            <!-- <view wx:if="{{ item0.isLeader && item0.isLeader == 'Y'}}" class="member_tag" >组长</view> -->
+            <view wx:if="{{ item0.dictValue && item0.dictValue != null}}" class="member_tag" >{{item0.dictValue}}</view>
+
+          </view>
+          <view class="cont_box overflow_hidden">
+            <view class="trainee_name_box hide_single">{{item0.traineeName}}</view>
+            <view class=" font_s_g trainee_name_box hide_single">
+              <text wx:if="{{item0.jobNumber}}">{{item0.jobNumber}}</text>
+              <text wx:elif="{{item0.mobile}}">{{item0.mobile}}</text>
+              <text wx:else>暂无</text>
+            </view>
+          </view>
+        </view>
+
+      </label>
+    </checkbox-group>
+  </view>
+  <!-- 学员列表end -->
+  <!-- 暂无数据 begin  isShow="{{!traineeList || traineeList.length<1}}" -->
+  <cb-no-data type="2" isShow="{{noDataMelIsShow}}"></cb-no-data>
+  <!-- 暂无数据 end-->
+
+
+</view>

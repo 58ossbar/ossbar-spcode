@@ -1,0 +1,112 @@
+<!--pages/tabbar/courselist/courselist.wxml-->
+<view class="container">
+  <view class="search_line">
+    <view class="search_box">
+      <input placeholder='输入搜索'  name="listName" value="{{listName}}" bindinput="bindinput"></input>
+      <view class="search_logo" bindtap="searchInput">
+        <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+      </view>
+    </view> 
+  </view>
+  <!-- tab切换begin -->
+  <scroll-view scroll-x="{{true}}" class="slide_box" scroll-into-view="tab-view-{{majorId}}">
+    <view wx:if="{{tabList && tabList.length>0}}" wx:for="{{tabList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="slide_menu {{item0.majorId==majorId?'active':''}}" bindtap="toTab" data-majorid="{{item0.majorId}}" id="tab-view-{{item0.majorId}}">
+      <text >{{item0.majorName}}</text>
+      <view class="tips" wx:if="{{item0.classroomNum && item0.classroomNum != 0}}">{{item0.classroomNum}}</view>
+    </view>
+  </scroll-view>
+  <!-- tab切换end -->
+  <!-- 课程列表begin -->
+  <scroll-view scroll-y="{{true}}" class="scroll_view_class" scroll-into-view='{{scrollIntoView}}' bindscrolltolower="bindScrollToLower" bindtouchstart="intoOtherMajorTouchStart" bindtouchmove="intoOtherMajorTouchMove" bindtouchend="intoOtherMajorTouchEnd" bindscroll="bindScroll">
+    <view class="list block" wx:if="{{classList && classList.length>0}}"  id="class_room_root" >
+      <!-- data-hasjoined="{{item0.isJoined?'Y':'N'}}" data-classtype="{{item0.isOwner?'2':'1'}}" data-pkgid="{{item0.pkgId}}" data-ctid="{{item0.ctId}}" data-subjectid="{{item0.subjectId}}" data-classid="{{item0.classId}}" -->
+      <view class="list_class" id="class_room_{{index0}}" wx:for="{{classList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" bindtap="toClassRoomDetail" data-currindex="{{index0}}" >
+        <view class="class_img">
+          <view class="img_box">
+            <image src="{{item0.pic}}"></image>
+            <block wx:if="{{item0.isCheck == 'Y' && item0.isApply && !item0.isPass && !item0.isOwner}}">
+              <view class="class_tag state_goin" >待审核</view>
+            </block>
+            <block wx:elif="{{item0 && item0.ifLiveLesson  && item0.ifLiveLesson == 'Y'  && item0.linkUrl}}">
+              <view class="class_tag" >直播课</view>
+            </block>
+            <block wx:else>
+              <view class="class_tag" wx:if="{{item.isPublic}}">{{item.isPublic}}</view>
+            </block>
+          </view>
+          <!-- (1未开始2进行中3已结束) -->
+        <view class="class_state {{item0.classroomState=='2'?'state_goin':(item0.classroomState=='3'?'state_end':'state_wait')}}" wx:if="{{item0.classroomState}}">{{item0.classroomStateName}}<!-- 进行中 --></view>
+        </view>
+        <view class="class_box font_s">
+          <view class="class_title hide_single">{{item0.name}}</view>
+          <view class="class_info hide_single"><!-- 湖南信息职业技术学院 -->
+            <text wx:if="{{item0.orgIdClass}}">{{item0.orgIdClass}}</text><text wx:else>暂无</text>
+          </view>
+          <view class="class_info  w_orange font_w hide_single">{{item0.className}}</view>
+          <view class="class_info info_flex">
+            <view class="stu_no">
+              <view class="icon_wrapper ico_img"><text class="iconfont iconyonghuzu" style="font-size:38rpx;"></text></view>
+              <text wx:if="{{item0.studyNum}}">{{item0.studyNum}}</text>
+              <text wx:else>0</text><text>人学习</text>
+            </view>
+            <view class="collec" catchtap="toOperationColl" data-iscollected="{{item0.isCollected}}" data-ctid="{{item0.ctId}}">
+              <view class="icon_wrapper ico_img"><text class="iconfont iconshoucang {{item0.isCollected?'w_orange':''}}" style="font-size:26rpx;"></text></view>
+            </view>
+          </view>
+        </view>
+        <view class="btn_bar">
+          <view ><view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view></view>
+          <view data-type="show" hidden="{{item0.classroomState =='3'}}" catchtap="manageClassTap" data-item="{{item0}}" data-classroomstate="{{item0.classroomState}}" data-hasjoined="{{item0.isJoined?'Y':'N'}}" data-ctid="{{item0.ctId}}" data-classtype="{{item0.isOwner?'2':'1'}}" data-currindex="{{index0}}" data-istop="{{item0.isTop?'Y':'N'}}"><view class="icon_wrapper"><text class="iconfont iconshenglvehao" style="font-size:38rpx;"></text></view></view>
+
+        </view>
+        <!-- <view class="top_tag">已置顶</view> -->
+      </view>
+    </view>
+    <!-- 暂无数据begin isShow="{{(!classList || classList.length<1)}}" -->
+    <cb-no-data img="creatkc.png" label="暂无课堂" isShow="{{noDataClaIsShow}}"></cb-no-data>
+    <!-- 暂无数据end -->
+  </scroll-view>
+  <!-- 课程列表end -->
+
+  <!-- 回到顶部 悬浮按钮 begin  bottom:{{movableGrid[1]}}px;  -->
+  <view class="toTopBtn bg_orange" style="right:{{movableGrid[0]}}px;" bindtouchmove="movableMove" bindtap="toBackTop" bindtouchend="movableMoveEnd" hidden="{{!showTopBtn}}">
+    <view class="toTopBtnLabel">返回</view>
+    <view class="toTopBtnLabel">顶部</view>
+  </view>
+  <!-- 回到顶部 悬浮按钮 end -->
+
+</view>
+
+<!--页脚选项课程管理-->
+<action-sheet hidden="{{manageSheetHidden}}" >
+  <block wx:if="{{classType=='2'}}">
+    <action-sheet-item wx:if="{{classroomState == '1'}}" data-type="start" bindtap="toOperationClassRoom">开始课堂</action-sheet-item>
+    <action-sheet-item wx:if="{{classroomState == '2'}}" data-type="end" bindtap="toOperationClassRoom">结束课堂</action-sheet-item>
+    <action-sheet-item wx:if="{{classroomState == '1'}}" bindtap="toCreateKc">编辑</action-sheet-item>
+    <action-sheet-item wx:if="{{classroomState == '1'}}" bindtap="toDelKc">删除</action-sheet-item>
+  </block>
+  <block wx:if="{{classType=='1'}}">
+    <action-sheet-item bindtap="toJoinKc">邀请码加入课堂</action-sheet-item>
+    <action-sheet-item bindtap="toShowQrcode">扫二维码加入课堂</action-sheet-item>
+  </block>
+  <action-sheet-cancel data-type="cancel" bindtap="manageClassTap">取消</action-sheet-cancel>
+  <!--固定到底部 的  底部占位 -->
+  <view class="fixedBottomView position_static" style="height:{{fixedBottom}}px;"></view>
+</action-sheet>
+
+<!--弹窗-->
+<view class="qrcode-mask " hidden="{{isQrCodeHide}}">
+  <view class="popup_box" >
+    <view class="side_box">
+      <view class="side_btn" style="left:85%;" bindtap="toShowQrcode"><view class="icon_wrapper"><text class="iconfont iconcha-circle" style="font-size:50rpx;"></text></view></view>
+    </view>
+    <view class="mid_box">
+      <view><image src="{{qrCode}}"></image></view>
+    </view>
+  </view>
+</view>
+
+<!--授权按钮弹层begin-->
+<!-- title='微信授权' content='小程序申请获得你的手机号码' showCancel="{{false}}" showConfirm="{{false}}"   -->
+<cb-modal show="{{modalIsShow}}" showButton="{{true}}" buttonOpenType="{{buttonOpenType}}" bindgetPhoneNumberBack="getPhoneNumberBack"></cb-modal>
+<!-- 授权按钮弹层end -->

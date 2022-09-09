@@ -1,0 +1,174 @@
+/* pages/other/memberlist/memberlist.wxss */
+.search_line {
+  width:100%;
+  background-color:#0033cc;
+  padding:10rpx 20rpx;
+  box-sizing: border-box;
+}
+.search_line .search_box {
+  width:calc(100vw - 40rpx);
+}
+.list {
+  margin-bottom: 20rpx;
+}
+.msgbox {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.msgbox .img_box {
+  text-align: center;
+  margin: 0 20rpx;
+  position: relative;
+  overflow: hidden;
+
+  
+  
+  /* top: -20rpx;
+  padding: 20rpx 20rpx 0;
+  box-sizing: border-box;
+  height: 120rpx; */
+
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  /* margin-top: -20rpx; */
+  padding-left: 20rpx;
+  margin-left: 0;
+  height: 80rpx;
+}
+.msgbox .img_box .head_img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.msgbox .cont_box {
+  flex: 1;
+  height: 80rpx;
+  /* line-height: 80rpx; */
+  padding-right: 20rpx!important;
+  padding-bottom: 20rpx!important;
+  border-bottom: #efeef4 solid 2rpx!important;
+
+  padding-top: 20rpx!important;
+}
+
+.msgbox .trainee_name_box{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-right: 20rpx;
+}
+
+.list label:last-child .msgbox .cont_box {
+  /* padding-bottom: 0!important; */
+  border-bottom:none!important;
+}
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+  /* margin-top: 20rpx; */
+  margin-left: 20rpx;
+}
+
+.listtop {
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.listtop checkbox .wx-checkbox-input {
+  top: -10rpx;
+}
+.listtop label {
+  width: 190rpx;
+  display: flex;
+  flex-direction: row;
+}
+.chek_title {
+  width: 120rpx;
+  text-align: center;
+}
+.memberNo {
+  flex:1;
+  font-size:24rpx;
+}
+.dec_btn {
+  width: auto;
+  padding: 0 20rpx;
+}
+
+.member_tag{
+  width: auto;
+  height: 32rpx;
+  line-height: 32rpx;
+  /* padding: 0 40rpx; */
+  font-size: 16rpx;
+  text-align: center;
+  color: #FFF;
+  background-color: #11b928;
+  position: absolute;
+  z-index: 2;
+  /* top: 10rpx; */
+  /* left: -34rpx; */
+  transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+
+  left: -36rpx;
+  top: 12rpx;
+  padding: 0 35rpx;
+
+}
+.identity_tag{
+  height: 40rpx;
+  line-height: 40rpx;
+  display: inline-block;
+  background-color: #11b9272c;
+  font-size: 16rpx;
+  padding: 0 20rpx;
+  color: #11b928;
+  border: 1px solid #11b9272c;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+}
+
+.list{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.msgbox_label{
+  width: calc(100% + 240rpx );
+  display: flex;
+  flex-direction: row;
+    box-sizing: border-box;
+}
+.msgbox{
+  width: calc(100% - 240rpx );
+  align-items: center;
+}
+.member_setting_wrapper{
+  display: flex;
+  align-items: center;
+  /* padding-bottom: 20rpx; */
+  border-bottom: #efeef4 solid 2rpx!important;
+
+  -webkit-transform: translateX(240rpx);
+  transform: translateX(240rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.member_setting{
+  width: 120rpx;
+  text-align: center;
+  color: #fff;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.member_setting_touchmove{
+  -webkit-transform: translateX(-240rpx);
+  transform: translateX(-240rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}

@@ -1,0 +1,8 @@
+<!--pages/classroom/message/message.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(128 + fixedBottom*2):'128'}}rpx;">
+  <image class="msgImg" mode="widthFix" src="/images/message.png"></image>
+  <!-- 底部菜单栏 begin -->
+  <cb-class-room-bar isShowIndex="3"></cb-class-room-bar>
+  <!-- 底部菜单栏 end -->
+
+</view>

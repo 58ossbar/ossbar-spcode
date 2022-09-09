@@ -1,0 +1,55 @@
+<!--pages/other/random/random.wxml-->
+<view class="container">
+  <block wx:if="{{ (!traineesList || (traineesList && traineesList.length < 1)) && (!manualStuList  || (manualStuList && manualStuList.length < 1)) }}">
+    <!-- 暂无数据 begin   -->
+    <cb-no-data type="2" isShow="{{true}}" label="当前课堂暂无学员"></cb-no-data>
+    <!-- 暂无数据 end-->
+  </block>
+  <block wx:else>
+    <view class="random_top">
+      <!-- <view class="inputbox"><input placeholder='一句话描述本次课堂活动，不填写也没有关系哦' name=""></input></view> -->
+      <block wx:if="{{traineesList && traineesList.length>0 }}">
+        <text class="sm w_gray {{manualStuList && manualStuList.length>0?'hide':''}}">摇一摇，开始选人吧</text>
+        <text class="sm w_gray {{manualStuList && manualStuList.length>0?'':'hide'}}">继续摇一摇，即可选择下一位学员哦\n</text>
+      </block>
+      <block wx:else>
+        <text class="sm w_gray ">当前课堂所有学员已被选择，暂无未选择学员\n</text>
+      </block>
+      <text class="sm w_gray {{manualStuList && manualStuList.length>0?'':'hide'}}">可以点击头像评分或者统一评分</text>
+    </view>
+
+    <scroll-view scroll-y="{{true}}" class="scroll_view_class">
+      <view class="random_center">
+        <view class="random_center_icon_wrapper {{randomState && randomState == '1'?'bg_blue_light':''}} {{traineesList && traineesList.length>0?'':'hide'}}" bindtap="shakeAnimStart">
+          <!-- <view class="random_center_img"> -->
+            <!--  animation="{{randomCenterIconAnimation}}"   -->
+            <view class="icon_wrapper {{randomState && randomState == '1'?'random_center_icon_animation':''}}"  ><text class="iconfont iconyaoyiyao w_white" style="font-size: 100rpx;"></text></view>
+          <!-- </view> -->
+        </view>
+      
+        <view wx:if="{{manualStuList && manualStuList.length>0}}" wx:for="{{manualStuList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="random_center_inner" data-name="score_{{index0}}" bindtap="toAddScore">
+          <view class="random_center_img" >
+            <image wx:if="{{item0.traineePic}}" class="width-all height-all" src="{{item0.traineePic}}"></image>
+            <image wx:else class="width-all height-all" src="/images/perdefault.jpg"></image>
+            <view class="rush_answer_stu_score bg_orange">{{item0.score}}</view>
+          </view>
+          <view class="random_center_name hide_single ">{{item0.traineeName}}</view>
+          <view class="rush_answer_stu_delbtn"><text class="iconfont iconcha-fill-circle w_red" style="font-size:34rpx;" catchtap="toDel"  data-currindex="{{index0}}"></text></view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <view class="bot_box">
+      <view class="bot_btn bg_blue  {{manualStuList && manualStuList.length>0?'w_white':'bg_gray'}}" data-name="scoreAll" bindtap="{{manualStuList && manualStuList.length>0?'toAddScore':''}}">
+        <!-- <view class="icon_wrapper"><text class="iconfont iconlist w_white" style="font-size:42rpx;"></text></view> -->
+        统一评分
+      </view>
+      <view class="bot_btn dis_btn bg_blue {{manualStuList && manualStuList.length>0?'bg_blue w_white':'bg_gray'}}" bindtap="{{manualStuList && manualStuList.length>0?'toSave':''}}">完成</view>
+    </view>
+  </block>
+
+  <!-- 下拉选择器begin -->
+  <cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+  <!-- 下拉选择器end -->
+
+</view>

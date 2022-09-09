@@ -1,0 +1,61 @@
+<!--packageOne/me/mycoll/mycoll.wxml-->
+<view class="container">
+  <!-- tab切换begin -->
+  <scroll-view scroll-x="{{true}}" class="slide_box">
+    <view wx:if="{{tabList && tabList.length>0}}" wx:for="{{tabList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="slide_menu {{index0 == currTab?'active':''}}" bindtap="toTab" data-currindex="{{index0}}">
+      <text>{{item0.dictValue}}</text>
+    </view>
+  </scroll-view>
+  <!-- tab切换end -->
+  <view class="list block" wx:if="{{collectList && collectList.length>0}}">
+    <block wx:for="{{collectList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <!-- 课堂列表begin -->
+      <view class="list_class" wx:if="{{tabList[currTab].dictCode == '11'}}" bindtap="toClassRoomDetail" data-currindex="{{index0}}">
+        <view class="class_img">
+          <view class="img_box">
+            <image src="{{item0.pic}}"></image>
+            <block wx:if="{{item0.isCheck == 'Y' && item0.isApply && !item0.isPass && !item0.isOwner}}">
+              <view class="class_tag state_goin" >待审核</view>
+            </block>
+            <block wx:elif="{{item0 && item0.ifLiveLesson  && item0.ifLiveLesson == 'Y'  && item0.linkUrl}}">
+              <view class="class_tag" >直播课</view>
+            </block>
+            <block wx:else>
+              <view class="class_tag" wx:if="{{item.isPublic}}">{{item.isPublic}}</view>
+            </block>
+          </view>
+          <!-- (1未开始2进行中3已结束) -->
+        <view class="class_state {{item0.classroomState=='2'?'state_goin':(item0.classroomState=='3'?'state_end':'state_wait')}}" wx:if="{{item0.classroomState}}">{{item0.classroomStateName}}<!-- 进行中 --></view>
+        </view>
+        <view class="class_box font_s">
+          <view class="class_title hide_single">{{item0.name}}</view>
+          <view class="class_info hide_single"><!-- 湖南信息职业技术学院 -->
+            <text wx:if="{{item0.orgIdClass}}">{{item0.orgIdClass}}</text><text wx:else>暂无</text>
+          </view>
+          <view class="class_info  w_orange font_w hide_single">{{item0.className}}</view>
+          <view class="class_info info_flex">
+            <view class="stu_no">
+              <view class="icon_wrapper ico_img"><text class="iconfont iconyonghuzu" style="font-size:38rpx;"></text></view>
+              <text wx:if="{{item0.studyNum}}">{{item0.studyNum}}</text>
+              <text wx:else>0</text><text>人学习</text>
+            </view>
+          
+            <view class="collec w_orange collecClassRoom" catchtap="toOperationColl" data-iscollected="{{item0.isCollected}}" data-ctid="{{item0.ctId}}" data-type="classroom">
+              <view class="icon_wrapper ico_img"><text class="iconfont iconshoucang w_orange" style="font-size:26rpx;"></text></view><!-- 取消 -->
+            </view>
+
+          </view>
+        </view>
+        <view class="btn_bar">
+          <view ><view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view></view>
+        </view>
+        <!-- <view class="top_tag">已置顶</view> -->
+      </view>
+      <!-- 课堂列表end -->
+    </block>
+  </view>
+  <!-- 暂无数据 begin isShow="{{!collectList || collectList.length<1}}" -->
+  <cb-no-data type="2" isShow="{{noDatacolIsShow}}"></cb-no-data>
+  <!-- 暂无数据 end-->
+
+</view>

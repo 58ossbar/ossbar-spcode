@@ -1,0 +1,44 @@
+<!--pages/other/notice/notice.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;">
+  <form report-submit="true">
+
+    <view class="column_title bg_white fixed_marginb">
+      <view class="title"><text>I</text>填写通知信息</view>
+    </view>
+
+    <view class="bg_white fixed_marginb">
+      
+      <view class="form_list">
+        <view class="form_line">
+          <view class="key_name">标题</view>
+          <view class="value_box"><input placeholder='请输入标题' value="{{dataForm.title}}" data-name="title" name="title" bindinput="bindinput"></input></view>
+        </view>
+
+        <view class="form_line" bindtap="toMemberList">
+          <view class="key_name">收件人</view>
+          <view class="value_box">
+            <input placeholder='选择收件人' disabled="{{true}}" value="{{dataForm.traineeNames}}" name=""></input>
+            <view class="fun_btn" >
+              <view class="icon_wrapper"><text class="iconfont iconjiahao-circle font_w" style="font-size:28rpx;"></text></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="form_line">
+          <view class="value_box">
+            <textarea show-confirm-bar="{{false}}" maxlength="500" placeholder="请输入通知内容" value="{{dataForm.content}}" data-name="content" name="content" bindinput="bindinput"></textarea>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="cancel">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="save"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>发送</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+
+  </form>
+
+</view>

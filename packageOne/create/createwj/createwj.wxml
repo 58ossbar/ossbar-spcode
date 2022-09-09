@@ -1,0 +1,59 @@
+<!--packageOne/create/createwj/createwj.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;">
+  <form report-submit="true">
+    
+    <view class="column_title bg_white fixed_marginb">
+      <view class="title"><text>I</text>填写投票/问卷信息</view>
+    </view>
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+        <view class="form_line">
+          <view class="key_name">活动主题<text>*</text></view>
+          <view class="value_box">
+            <input class="value_extend" placeholder='请输入活动主题' disabled="{{onlyWatchActivityInfo}}" data-name="activityTitle" name="activityTitle" bindinput="bindinput" value="{{dataForm.activityTitle}}"></input>
+          </view>
+        </view>
+        <view class="form_line"  data-name="purpose" bindtap="{{onlyWatchActivityInfo?'':'toAddPurpose'}}">
+          <view class="key_name">用途</view>
+          <view class="value_box">
+            <view class="value_extend overflow_hidden">{{purposeName?purposeName:'未指定'}}</view>
+            <view class="fun_btn"><view class="icon_wrapper"><text class="iconfont iconright" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bg_white">
+      <view class="form_list">
+        <view class="form_line" bindtap="toSetChapter">
+          <view class="key_name">课程章节</view>
+          <view class="value_box">
+            <view class="value_extend">{{dataForm.chapterId?"已设置":"未设置"}}</view>
+            <view class="fun_btn"><view class="icon_wrapper"><text class="iconfont iconright" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+      </view>
+      <view class="value_exp">如果选择章节则在该章节下出现活动</view>
+    </view>
+
+    <view class="switch_line bg_white">
+      <view class="switch_name">投票后立即显示结果</view>
+      <text class="w_gray">{{dataForm.isShow =='Y'?'是':'否'}}</text>
+      <switch color="#0033cc" checked="{{dataForm.isShow =='Y'}}" disabled="{{onlyWatchActivityInfo}}" bindchange="switchChange"></switch>
+    </view>
+    <view class="value_exp">开启此功能，学生将在提交投票结果后查看到投票/问卷的总体结果，学生只能投一次票，且提交后不可更改</view>
+
+    <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="cancel">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="toAddQues">下一步</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+
+  </form>
+</view>
+
+
+<!-- 下拉选择器begin -->
+<cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+<!-- 下拉选择器end -->

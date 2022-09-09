@@ -1,0 +1,170 @@
+<!--components/activity-comm/activity-comm.wxml-->
+<!-- 课堂里面的 老师 进去的 活动列表页 -->
+<view class= "page_box1">
+  <view class="top_tool {{(classRoomBaseInfo && classRoomBaseInfo.classroomState && classRoomBaseInfo.classroomState == '3') || (!hasAddActPermission) ?'top_tool_nojiahao':'top_tool_hasjiahao'}}">
+    <view class="midd_tool">
+      <view class="search_box">
+        <input placeholder='输入搜索' name="activityTitle" value="{{activityTitle}}" bindinput="bindinput"></input>
+        <view class="search_logo" bindtap="searchInput">
+          <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+        </view>
+      </view>
+    </view>
+    <view hidden="{{(classRoomBaseInfo && classRoomBaseInfo.classroomState && classRoomBaseInfo.classroomState == '3') || (!hasAddActPermission)}}" class="side_tool" bindtap="funAddTap"><view class="icon_wrapper"><text class="iconfont iconjiahao" style="font-size:32rpx;"></text></view></view>
+
+  </view>
+
+  <view class="tabs" wx:if="{{activityStateArray && activityStateArray.length>0}}" >
+    <view wx:for="{{activityStateArray}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" class="tabs_nemu {{currActivityStateIndex==index0?'active':''}}" data-currindex="{{index0}}" bindtap="toChangeTab">
+      {{item0.dictValue}}<text class="tabs_nemu_text">\n<block wx:if="{{item0.num && item0.num !=0}}">{{item0.num}}</block><block wx:else>0</block></text>
+    </view>
+  </view>
+  <!--tab下的内容列表begin-->
+  <view class="all" wx:if="{{activityList && activityList.length>0}}">
+    <block  wx:for="{{activityList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <view class="column_title" bindtap="toFoldActivity" data-currindex="{{index0}}">
+        <view class="title hide_single"><text>I</text>{{item0.resgroupName}}</view>
+      </view>
+      <view class="list bg_white" hidden="{{!item0.isShowActivity}}">
+        <view class="praisebox" wx:if="{{item0.children && item0.children.length>0}}" wx:for="{{item0.children}}" wx:for-item="item01" wx:for-index="index01" wx:key="index01"  bindtap="toShowActivity" data-currindex="{{index01}}" data-preindex="{{index0}}">
+          <view class="img_box">
+            <view class="head_img">
+              <!--activityType的值来区别 1投票问卷6课堂表现8签到 -->
+              <view class="{{item01.activityIcon}} img_s width-all height-all" ></view>
+            </view>
+          </view>
+          <view class="cont_box flex_box">
+            <view class="top_cont">
+              <view class="cont_line font_w overflow_hidden hide_single">
+                <text>{{item01.activityTitle}}</text>
+                <text wx:if="{{item01.activityType && item01.activityType =='8' && item01.activityBeginTime}}">({{item01.activityBeginTime}})</text>
+              </view>
+              <view class="cont_line flex_box font_s_g hide_single">
+                <view class="cont_line_flex_box_view hide_single">
+                  <block wx:if="{{item01.activityType == '1'}}">
+                    <text wx:if="{{item01.questionNumber && item01.questionNumber != 0}}">{{item01.questionNumber}}</text>
+                    <text wx:else>0</text><text>道题目/</text>
+                  </block>
+                  <block wx:if="{{item01.activityType == '8'}}">
+                    <text wx:if="{{item01.totalTraineeNum && item01.totalTraineeNum != 0}}">{{item01.totalTraineeNum}}</text>
+                    <text wx:else>0</text><text>人参与/</text>
+                  </block>
+                  <text wx:if="{{item01.answerNumber && item01.answerNumber != 0}}">{{item01.answerNumber}}</text>
+                  <text wx:else>0</text><text>人</text>
+                  <text wx:if="{{item01.activityType == '1'}}">作答</text>
+                  <text wx:elif="{{item01.activityType == '8'}}">已签/</text>
+                  <text wx:else>参与</text>
+                  <block wx:if="{{item01.activityType == '8'}}">
+                    <text wx:if="{{item01.unSignNum && item01.unSignNum != 0}}">{{item01.unSignNum}}</text>
+                    <text wx:else>0</text><text>人未签</text>
+                  </block>
+                  <text wx:if="{{item01.activityType == '1'}}">/累计{{item01.totalUserNum || 0}}人作答</text>
+                </view>
+                <view class="cont_line_flex_box_view hide_single">
+                </view>
+              </view>
+            </view>
+            <view class="btn_bar" data-type="show" data-currindex="{{index01}}" data-preindex="{{index0}}"  catchtap="{{(item01.activityState && item01.activityState !='2' && item01.scrollActiPermsNum >0 && (!classroomIdentity || classroomIdentity != 'student') )?'activSetHidden':''}}">
+              <view class="btn_bar_view"><view class="btn_bar_view icon_wrapper" wx:if="{{item01.activityState && item01.activityState !='2' && item01.scrollActiPermsNum >0 && (!classroomIdentity || classroomIdentity != 'student') }}"><text class="iconfont iconright" style="font-size:38rpx;"></text></view></view>
+              <view class="font_s_g btn_bar_view"><!--activityState  0未开始1进行中2已结束 -->
+                <block wx:if="{{item01.activityState && item01.activityState =='0'}}">
+                  <text class="state_wait"></text><text>未开始</text>
+                </block>
+                <block wx:if="{{item01.activityState && item01.activityState =='1'}}">
+                  <text class="state_goin"></text><text>进行中</text>
+                </block>
+                <block wx:if="{{item01.activityState && item01.activityState =='2'}}">
+                  <text class="state_end"></text><text>已结束</text>
+                </block>
+              
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- 暂无数据begin   isShow="{{(!activityList || activityList<1)}}"  -->
+  <cb-no-data img="creatkc.png" label="尚未创建活动\n点击右上角+号创建活动" isShow="{{noDataActIsShow}}"></cb-no-data>
+  <!-- 暂无数据end -->
+  <!--tab下的内容列表end-->
+  <cb-modal show="{{modalActivityEndTimeDatas.showModal}}" title="提示" modalType="textarea" isSlotContent="{{true}}" bindclose="modalClose">
+    <view slot="content" class="modal_activity_end_time">
+      <view>确定开始吗？</view>
+      <view class="form_list bg_white text_align_left">
+        <view class="form_line ">
+          <view class="value_box border-top border-bottom font_m" bindtap="toShowPickerData">
+            <input value="{{modalActivityEndTimeDatas.activityEndTime}}" disabled="true" placeholder="点击设置活动结束时间"></input>
+            <view class="fun_btn" catchtap="toClearDateTime"><view class="icon_wrapper"><text class="iconfont iconcha-circle" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+      </view>
+      <view class="value_exp w_orange font_s">不设置则需手动结束活动</view>
+    </view>
+  </cb-modal>
+
+</view>
+
+<cb-picker-data isShowPicker="{{modalActivityEndTimeDatas.pickerDataIsShow}}" titleText="清选择活动结束时间" pickerType="second" bindsure="pickerDataSure" startDate="{{modalActivityEndTimeDatas.startDate}}" endDate="{{modalActivityEndTimeDatas.endDate}}" defaultDate="{{modalActivityEndTimeDatas.activityEndTime}}"  indicatorStyle="height:60rpx"></cb-picker-data>
+
+<!--创建签到、投票问卷 等活动-->
+<action-sheet hidden="{{funAddHidden}}" bindchange="">
+  <view class="add_box">
+    <view class="add_items" bindtap="{{item0.eventName}}" wx:for="{{creatorActList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <view class="ico_img"><view class="iconfont_svg {{item0.icon}} img_s width-all height-all" ></view></view>
+      <view class="items_na">{{item0.name}}</view>
+    </view>
+  </view>
+  <action-sheet-cancel bindtap="funAddTap">取消</action-sheet-cancel>
+  <!--固定到底部 的  底部占位 -->
+  <view class="fixedBottomView position_static" style="height:{{fixedBottom}}px;"></view>
+</action-sheet>
+
+<!--签到选择-->
+<action-sheet hidden="{{signInHidden}}" bindchange="">
+  <action-sheet-item data-type="createptqd" bindtap="toOperateSign">普通签到</action-sheet-item>
+  <action-sheet-item data-type="createssqd" bindtap="toOperateSign">手势签到</action-sheet-item>
+  <action-sheet-item data-type="createsgdj" bindtap="toOperateSign">手工登记</action-sheet-item>
+  <action-sheet-cancel bindtap="signInTap">取消</action-sheet-cancel>
+  <!--固定到底部 的  底部占位 -->
+  <view class="fixedBottomView position_static" style="height:{{fixedBottom}}px;"></view>
+</action-sheet>
+
+<!--活动设置-->
+<!-- 课堂表现、普通签到：删除、开始 ，  
+     手工签到：删除、编辑，  
+     其他的 ：  删除、编辑(不来自【教学包】)  、开始、   查看 信息、结束   -->
+<!--activityType的值来区别 1投票问卷6课堂表现8签到 
+    signType  2手势签到  3  手工签到  1 普通签到   -->
+<action-sheet hidden="{{activSetHidden}}" bindchange="">
+  <view class="sheet_title hide_single">{{currEditActivity.activityTitle}}<!-- 头脑风暴 2020-6166692 --></view>
+  <view class="add_box flex_box"><!--activityState  0未开始1进行中2已结束 -->
+    <!-- currEditActivity.activityState == '1' ||  -->
+    <view class="add_items" data-type="delete" bindtap="toOperationActivity" hidden="{{!currEditActivity.hasDeleteActPermission}}">  <!--  !currEditActivity.hasPermission ||    || !delActiPerms   -->
+      <view class="ico_img"><view class="img_s"><text class="iconfont icondelete" style="font-size:44rpx;"></text></view></view>
+      <view class="items_na">删除</view>
+    </view>
+    <view class="add_items"  bindtap="toEditActivity" hidden="{{currEditActivity.activityState != '0' || (currEditActivity.activityType=='8' && currEditActivity.signType == '1') || (currEditActivity.activityType=='6' ) || (!currEditActivity.hasEditActPermission )  }}" >  <!--  !currEditActivity.hasPermission ||     || !editActiPerms   -->
+      <view class="ico_img"><view class="img_s"><text class="iconfont iconedit" style="font-size:40rpx;"></text></view></view>
+      <view class="items_na">编辑</view>
+    </view>
+
+    <view class="add_items"  bindtap="{{currEditActivity.activityType == '8' &&  currEditActivity.signType == '2'?'toShowSsqd':'toShowActivityInfo' }}" hidden="{{(currEditActivity.activityType == '8' &&  currEditActivity.signType != '2') || (currEditActivity.activityType=='6' )  }}">
+      <view class="ico_img"><view class="img_s"><text class="iconfont iconsousuo" style="font-size:40rpx;"></text></view></view>
+      <view class="items_na">查看信息</view>
+    </view>
+
+  <view class="add_items" data-type="start" bindtap="toStartActivity" hidden="{{currEditActivity.activityState != '0' || (currEditActivity.activityType=='8' && currEditActivity.signType == '3') || !currEditActivity.hasStartActPermission }}">
+      <view class="ico_img"><view class="img_s"><text class="iconfont iconkaishi " style="font-size:46rpx;"></text></view></view>
+      <view class="items_na">开始</view>
+    </view>
+    <view class="add_items" data-type="end" bindtap="toOperationActivity" hidden="{{currEditActivity.activityState != '1' || !currEditActivity.hasEndActPermission }}">    <!--    || !endActiPerms   -->
+      <view class="ico_img"><view class="img_s"><text class="iconfont iconzanting " style="font-size:46rpx;"></text></view></view>
+      <view class="items_na">结束</view>
+    </view>
+  </view>
+  <action-sheet-cancel data-type="cancel" bindtap="activSetHidden">取消</action-sheet-cancel>
+  <!--固定到底部 的  底部占位 -->
+  <view class="fixedBottomView position_static" style="height:{{fixedBottom}}px;"></view>
+</action-sheet>

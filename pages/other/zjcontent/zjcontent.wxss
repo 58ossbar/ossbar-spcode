@@ -1,0 +1,60 @@
+/* pages/other/zjcontent/zjcontent.wxss */
+
+.column_title .fun_btn {
+  width: auto;
+  line-height: 40rpx;
+}
+.column_title .title{
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.cont_title {
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: bold;
+  border-bottom: #efeef4 solid 2rpx;
+}
+.cont_title text {
+  margin-right: 10rpx;
+}
+.cont_unit {
+  margin-bottom: 20rpx;
+}
+.cont_view {
+  padding:20rpx 0; 
+  line-height:1.5;
+}
+
+.scroll_view{
+  height: calc(100vh - 190rpx);
+}
+.chapter_content{
+  background-color: #fff;
+  padding: 20rpx;
+  /* margin: 0 20rpx; */
+}
+
+action-sheet {
+  width: 100%;
+  overflow: hidden;
+  background-color: #FFF;
+}
+
+rich-text .p._text {
+  white-space: pre !important;
+  word-wrap:break-word !important;
+  word-break:break-all !important;
+  flex-wrap: wrap;
+}
+
+.completion_operating_btns{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+.completion_operating_btns .iconfont{
+  font-size: 24rpx;
+  margin-right: 4rpx;
+  /* font-weight: bolder; */
+}

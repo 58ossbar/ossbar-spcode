@@ -1,0 +1,226 @@
+/* pages/other/xqwj/xqwj.wxss */
+.column_title {
+  color: #353535;
+}
+.column_title .title {
+  overflow: hidden;
+}
+.ques_line {
+  width:100%;
+  overflow:hidden;
+  box-sizing:border-box;
+
+  /* 修改begin */
+  /* height:80rpx; */
+  padding: 0 25rpx;
+  /* 修改end */
+
+}
+.ques_items {
+  width:80rpx; 
+  height:80rpx;
+  line-height: 80rpx;
+  margin: 0;
+  float: left;
+  position: relative;
+}
+.ques_items .bg_line {
+  width: 100%;
+  height: 2rpx;
+  background-color: #666666;
+  display: block;
+  top:50%;
+  right: 0;
+  margin-top: -1rpx;
+  position: absolute;
+}
+/* 修改begin */
+.ques_line .ques_items:first-child{
+  margin-left: -20rpx;
+}
+/* 修改end */
+.ques_line .ques_items:first-child .bg_line {
+  width: 50%;
+}
+.ques_line .ques_items:last-child .bg_line {
+  width: 20rpx;
+  left: 0;
+  right: inherit;
+}
+.ques_items .items_no {
+  width:40rpx;
+  height:40rpx;
+  text-align:center;
+  line-height:40rpx;
+  font-size:24rpx;
+  color:#FFF;
+  border-radius:50%;
+  background-color:#fd7512;
+  display:block;
+  top:50%;
+  left: 50%;
+  margin-top: -20rpx;
+  margin-left: -20rpx;
+  z-index: 1; 
+  position: absolute;
+}
+.active .items_no { 
+  background-color:#0033cc;
+}
+
+
+.noqk {
+  width:100%;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+}
+.noqk .title {
+  flex: 1;
+  height:80rpx;
+  line-height:80rpx;
+}
+.noqk .fun_btn_extend {
+  width: auto;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin:0 20rpx;
+  box-sizing: border-box;
+}
+.noqk .fun_btn_extend image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-top: 24rpx;
+  margin-right: 10rpx;
+  display: inline-block;
+}
+
+.wjtm {
+  line-height:1.5; 
+  padding-bottom:10rpx; 
+  border-bottom:#efeef4 solid 2rpx; 
+  /* 修改begin */
+  /* margin-bottom:20rpx; */
+  /* 修改end */
+}
+/* 修改begin */
+.list{
+  padding: 0;
+}
+/* 修改end */
+.list .list_item {
+  /* 修改begin */
+  /* margin-bottom: 40rpx; */
+  margin-top: 40rpx;
+
+  width: 100%;
+  /* 修改end */
+}
+.top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.top .top_item1 {
+  /* flex: 1; */
+  width: 85%;
+  /* width: calc(85% - 40rpx); */
+  word-break: break-all;
+  word-wrap: break-word;
+   /* 修改的begin */
+  /* line-height: 1; */
+  line-height: 1.5;
+   /* 修改的end */
+}
+.top .top_item2 {
+  /* width: auto; */
+  width: 15%;
+  /* width: calc(15% + 40rpx); */
+  display: flex;
+  flex-direction: column;
+  /* 修改的begin */
+  justify-content: flex-end;
+   /* 修改的end */
+}
+.top .top_item2 view{
+  width:100%;
+   /* 修改的begin */
+  /* flex:1; */
+   /* 修改的end */
+  font-size: 24rpx;
+  color: #959595;
+  text-align: right;
+}
+
+.bot {
+  width: 100%;
+  background-color:#efeef4;
+  border-radius: 8rpx; 
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+
+.bot text {
+  display:block; 
+  height:16rpx; 
+  background-color:#0033cc;
+  border-radius: 8rpx; 
+}
+
+.jianda_view{
+  border-bottom: #efeef4 solid 2rpx;
+  min-height: 80rpx;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  /* line-height: 60rpx; */
+  margin: 0 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.jianda_view_img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.jianda_view_label{
+  width: calc(100% - 110rpx);
+}
+.top_two .top_two_item1{
+  line-height: 1.5;
+}
+.top_two .top_two_item2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.iconRight_wrapper  {
+  width: 40rpx;
+  text-align: right;
+}
+.top_two .top_two_item2 .top_two_item2_percent {
+  width: 15%;
+  text-align: right;
+}
+.top_two .top_two_item2 .top_two_item2_num {
+  width: 50%;
+  text-align: left;
+}
+.bot_wrapper{
+  display: flex;
+  align-items: center;
+}
+.bot_camfill{
+  width: calc(100% - 50rpx);
+}
+.top_item2_nums{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

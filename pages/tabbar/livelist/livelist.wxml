@@ -1,0 +1,5 @@
+<!--pages/tabbar/livelist/livelist.wxml-->
+<view  class="container">
+  <image class="msgImg" mode="widthFix" src="/images/live.png"></image>
+</view>
+

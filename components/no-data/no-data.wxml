@@ -1,0 +1,14 @@
+<!--components/no-data/no-data.wxml-->
+<!-- 暂无数据公共组件 -->
+<view class="list block {{isShow?'':'hide'}}" wx:if="{{type == '1'}}">
+  <view class="ad_box">
+    <image mode="heightFix" src="{{showImg}}"></image>
+  </view>
+  <view class="ad_text">
+    <text class="w_gray">{{label}}</text>
+  </view>
+</view>
+<view class="nodate {{isShow?'':'hide'}} {{isVerticalCenter?'vertical_center':''}}" wx:if="{{type == '2'}}">
+  <view class="icon_wrapper nodate_image"><text class="iconfont iconnodata" style="font-size:120rpx;color:#0033cc;"></text></view>
+  <view class="nodate_label w_blue">{{label}}</view>
+</view>

@@ -1,0 +1,27 @@
+<!--packageOne/me/updatelog/updatelog.wxml-->
+
+<view class="container">
+  <view class="list bg_white logs" wx:if="{{logsList && logsList.length>0}}">
+    <cb-parser-group>
+    <view class="praisebox" wx:for="{{logsList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0">
+      <view class="cont_box">
+        <view class="top_cont">
+          <view class="cont_line w_blue font_w">{{item0.version}}</view>
+          <view class="cont_line time">{{item0.createTime}}</view>
+          <view class="reply_me">
+            <view class="reply_me_view">
+              <cb-parser id="chapterParser" html="{{item0.content}}" gesture-zoom lazy-load selectable show-with-animation use-anchor></cb-parser>
+            </view>
+            
+          </view>
+        </view>
+      </view>
+    </view>
+    </cb-parser-group>
+  </view>
+  <!-- 暂无数据 begin isShow="{{!logsList || logsList.length<1}}" -->
+  <cb-no-data type="2" isShow="{{noDataLogIsShow}}"></cb-no-data>
+  <!-- 暂无数据 end-->
+
+  <!-- <view class="support  hide">湖南创蓝信息科技有限公司提供技术支持</view> -->
+</view>

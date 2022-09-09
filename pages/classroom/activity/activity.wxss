@@ -1,0 +1,11 @@
+/* pages/other/activity/activity.wxss */
+.container {
+  /* padding-bottom: 120rpx; */
+  padding-bottom: 128rpx;
+  position: relative;
+}
+action-sheet {
+  width: 100%;
+  overflow: hidden;
+  background-color: #FFF;
+}

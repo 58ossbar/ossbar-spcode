@@ -1,0 +1,17 @@
+<view wx:if="{{controls}}" class="contain">
+	<slider class="slider" activeColor="#585959" block-size="12" disabled="{{error}}" value="{{value}}" bindchanging="_seeking" bindchange="_seeked" />
+	<view class="poster" style="background-image:url('{{poster}}')">
+		<view class="button" bindtap="{{playing?'pause':'play'}}">
+			<view class="{{playing?'pause':'play'}}" />
+		</view>
+	</view>
+	<view class="title">
+		<view class="name">{{name||'未知音频'}}</view>
+		<!-- {{author||'创蓝教育'}} -->
+		<view class="author">创蓝教育</view>
+	</view>
+	<view class="time">
+		<text>{{time}}/{{durationRime}}</text>
+		<!-- <view class=" iconfont iconzhiding rotate180 audio_download_icon" bindtap="toDownload"></view> -->
+	</view>
+</view>

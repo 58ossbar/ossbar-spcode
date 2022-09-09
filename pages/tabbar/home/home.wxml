@@ -1,0 +1,207 @@
+<!--index.wxml-->
+<view class="container">
+  <!--轮播-->
+  <view class="banner_box">
+    <!--轮播上方搜索区-->
+    <view class="top_tool">
+      <view class="side_tool">
+        <view class="icon_wrapper"><text class="iconfont icontouping w_white " style="font-size:46rpx;"></text></view>
+      </view>
+      <view class="midd_tool">
+        <view class="search_box">
+          <input placeholder='输入名称搜索' name="listName" value="{{listName}}" bindinput="bindinput"></input>
+          <view class="search_logo" bindtap="searchInput">
+            <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+          </view>
+
+        </view>
+      </view>
+
+      <view class="side_tool" bindtap="actionSheetTap">
+        <view class="icon_wrapper"><text class="iconfont iconjiahao-circle w_white font_w" style="font-size:42rpx;"></text></view>
+      </view>
+    </view>
+    <!-- 紧挨着加号的选择action-sheet begin-->
+    <view class="top_window" hidden="{{actionSheetHidden}}">
+      <view class="up_arrow"></view>
+      <view class="itemlist">
+        <!-- wx:if="isTeacher" -->
+        <view class="item" bindtap="toCreateKc" >
+          <text class="iconfont iconchuangjianketang w_white " style="font-size:34rpx;"></text>
+          <view class="item_name">创建课堂</view>
+        </view>
+        <view class="item ispad" bindtap="toJoinKc">
+          <text class="iconfont iconyaoqing w_white " style="font-size:36rpx;"></text>
+          <view class="item_name">加入课堂</view>
+        </view>
+      </view>
+    </view>
+    <!-- 紧挨着加号的选择action-sheet end-->
+
+    <!--轮播图 轮播 begin-->
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" class="height-all">
+      <block wx:if="{{lunbo && lunbo.length>0}}">
+        <swiper-item wx:for="{{lunbo}}" wx:key="index" >
+          <view class="width-all height-all text-align-center banner_no_img">
+            <image mode="scaleToFill"  class="banner_img" src="{{item.avdPicurl}}" bindtap="toClickAvdLink" data-currindex="{{index}}"></image>
+          </view>
+        </swiper-item>
+      </block>
+      <block wx:else>
+        <swiper-item>
+          <view class='align-center-vertical banner_img banner_no_img'>暂无图片</view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!--轮播图 轮播 end-->
+    <!--轮播图 水波浪 begin-->
+
+    <view class="banner-wave-wrapper">
+      <view class="wave_b" style="background:url({{waveBgb}}) repeat-x;"></view>
+      <view class="wave_a" style="background:url({{waveBga}}) repeat-x;"></view>
+    </view>
+    <!--轮播图 水波浪 end-->
+  </view>
+
+  <!--分页-->
+  <view class="tabs">
+    <view class="tabs_nemu index_menu {{classType=='2'?'active':''}}" wx:if="{{isTeacher}}" bindtap="tabClick" data-classtype="2">我教的课
+      <view class="tips index_tips" wx:if="{{teachTotalCount && teachTotalCount!=0}}">{{teachTotalCount}}</view>
+    </view>
+    <view class="tabs_nemu index_menu {{classType=='1'?'active':''}}" bindtap="tabClick" data-classtype="1">我要学习
+      <text class="tips index_tips" wx:if="{{listenTotalCount && listenTotalCount!=0}}">{{listenTotalCount}}</text>
+    </view>
+    <!-- I 更多 -->
+    <view class="more font_m" bindtap="toCourseList">
+      <text>更多</text>
+      <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+    </view>
+  </view>
+
+  <block wx:if="{{ classType=='2' }}">
+    <!--我教的课/未创建教课 暂无数据 begin isShow="{{noDataTeaIsShow}}"  -->
+    <cb-no-data img="creatkc.png" label="尚未创建课堂\n点击右上角+号创建课堂" isShow="{{classType=='2' && (!teachClass || teachClass.length<1)}}"></cb-no-data>
+    <!--我教的课/未创建教课 暂无数据 end-->
+    <!--我教的课/展示教课列表 begin   {{classType=='2'?'':'hide'}} -->
+    <view class="list block " wx:if="{{teachClass && teachClass.length>0}}">
+      <view class="list_class" wx:for="{{teachClass}}"  wx:key="index" bindtap="toActivityKc" data-currindex="{{index}}" >
+        <view class="class_img">
+          <view class="img_box">
+            <image src="{{item.pic}}"></image>
+            <block wx:if="{{item && item.ifLiveLesson  && item.ifLiveLesson == 'Y'  && item.linkUrl}}">
+              <view class="class_tag" >直播课</view>
+            </block>
+            <view class="class_tag" wx:elif="{{item.isPublic}}">{{item.isPublic}}</view>
+          </view>
+          <!-- (1未开始2进行中3已结束) -->
+          <view class="class_state {{item.classroomState=='2'?'state_goin':(item.classroomState=='3'?'state_end':'state_wait')}}" wx:if="{{item.classroomState}}">{{item.classroomStateName}}<!-- 进行中 --></view>
+        </view>
+        <view class="class_box font_s">
+          <view class="class_title hide_single">{{item.name}}</view>
+          <view class="class_info w_orange font_w hide_single">{{item.className}}</view>
+          <view class="class_info">邀请码：{{item.invitationCode}}</view>
+          <view class="class_info stu_no">
+            <view class="icon_wrapper ico_img"><text class="iconfont iconyonghuzu" style="font-size:38rpx;"></text></view>
+            {{item.studyNum}}人学习
+          </view>
+        </view>
+        <view class="btn_bar">
+          <view >
+            <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+          </view>
+          <view data-type="show" hidden="{{item.classroomState == '3'}}" catchtap="manageClassTap" data-classroomstate="{{item.classroomState}}" data-ctid="{{item.ctId}}" data-istop="{{item.isTop?'Y':'N'}}" data-item="{{item}}">
+            <view class="icon_wrapper"><text class="iconfont iconshenglvehao" style="font-size:38rpx;"></text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--我教的课/展示教课列表 end-->
+  </block>
+
+  <block wx:if="{{ classType=='1' }}">
+    <!--我听的课/未加入听课 暂无数据 begin isShow="{{noDataLisIsShow}}" -->
+    <cb-no-data img="joinkc.png" label="尚未加入课堂\n点击右上角+号用邀请码加入课堂" isShow="{{classType=='1' && (!listenClass || listenClass.length<1)}}"></cb-no-data>
+    <!--我听的课/未加入听课 暂无数据 end-->
+    <!--我听的课/展示听课列表 begin   {{classType=='2'?'hide':''}} -->
+    <view class="list block "  wx:if="{{listenClass && listenClass.length>0}}">
+      <view class="list_class" wx:for="{{listenClass}}" wx:key="index" bindtap="toStuActivityKc" data-currindex="{{index}}" >
+        <view class="class_img">
+          <view class="img_box">
+            <image src="{{item.pic}}"></image>
+            <block wx:if="{{item.isCheck == 'Y' && item.isApply && !item.isPass && !item.isOwner}}">
+              <view class="class_tag state_goin" >待审核</view>
+            </block>
+            <block wx:elif="{{item && item.ifLiveLesson  && item.ifLiveLesson == 'Y'  && item.linkUrl}}">
+              <view class="class_tag" >直播课</view>
+            </block>
+            <block wx:else>
+              <view class="class_tag" wx:if="{{item.isPublic}}">{{item.isPublic}}</view>
+            </block>
+          </view>
+          <!-- (1未开始2进行中3已结束) -->
+          <view class="class_state {{item.classroomState=='2'?'state_goin':(item.classroomState=='3'?'state_end':'state_wait')}}" wx:if="{{item.classroomState}}">{{item.classroomStateName}}<!-- 进行中 --></view>
+        </view>
+        <view class="class_box font_s">
+          <view class="class_title hide_single">{{item.name}}</view>
+          <view class="class_tutor">
+            <view class="tutor">
+              <view class="tutor_img">
+                <image src="{{item.teacherPic}}"></image>
+              </view>
+              <view class="tutor_name hide_single">
+                <text>授课\n</text><text wx:if="{{item.teacherName}}">{{item.teacherName}}</text><text wx:else>暂无</text>
+              </view>
+            </view>
+            <view class="tutor">
+              <view class="tutor_img"  wx:if="{{item.traineeName}}">
+                <image src="{{item.traineePic}}"></image>
+              </view>
+              <view class="tutor_name hide_single" wx:if="{{item.traineeName}}">
+                <text>辅教\n{{item.traineeName}}</text>
+              </view>
+            </view>
+          </view>
+          <view class="class_info stu_no">
+            <view class="icon_wrapper ico_img"><text class="iconfont iconyonghuzu" style="font-size:38rpx;"></text></view>
+            {{item.studyNum}}人学习
+          </view>
+        </view>
+        <view class="btn_bar">
+          <view >
+            <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+    <!--我听的课/展示听课列表 end-->
+  </block>
+
+  <!-- 回到顶部 悬浮按钮 begin  bottom:{{movableGrid[1]}}px;  -->
+  <view class="toTopBtn bg_orange" style="right:{{movableGrid[0]}}px;" bindtouchmove="movableMove" bindtap="toBackTop" bindtouchend="movableMoveEnd" hidden="{{!showTopBtn}}">
+    <view class="toTopBtnLabel">返回</view>
+    <view class="toTopBtnLabel">顶部</view>
+  </view>
+  <!-- 回到顶部 悬浮按钮 end -->
+
+
+</view>
+
+<!--页脚选项课程管理 bindchange="actionSheetbindchange"-->
+<action-sheet hidden="{{manageSheetHidden}}" >
+  <block wx:if="{{classType=='2'}}"><!-- classroomState  (1未开始2进行中3已结束) -->
+    <action-sheet-item wx:if="{{classroomState == '1'}}" data-type="start" bindtap="toOperationClassRoom">开始课堂</action-sheet-item>
+    <action-sheet-item wx:if="{{classroomState == '2'}}" data-type="end" bindtap="toOperationClassRoom">结束课堂</action-sheet-item>
+    <action-sheet-item wx:if="{{classroomState == '1'}}" bindtap="toCreateKc">编辑</action-sheet-item>
+    <action-sheet-item wx:if="{{classroomState == '1'}}" bindtap="toDelKc">删除</action-sheet-item>
+  </block>
+  <action-sheet-cancel data-type="cancel" bindtap="manageClassTap">取消</action-sheet-cancel>
+  <!--固定到底部 的  底部占位 -->
+  <view class="fixedBottomView position_static" style="height:{{fixedBottom}}px;"></view>
+</action-sheet>
+
+<!--授权按钮弹层begin-->
+<!-- title='微信授权' content='小程序申请获得你的公开信息(昵称，头像等)' showCancel="{{false}}" showConfirm="{{false}}"  -->
+<cb-modal show="{{modalIsShow}}"  showButton="{{true}}" buttonOpenType="{{buttonOpenType}}" bindgetUserInfo="getUserInfo" bindgetPhoneNumberBack="getPhoneNumberBack"></cb-modal>
+<!-- 授权按钮弹层end -->
+

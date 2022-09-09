@@ -1,0 +1,8 @@
+/* pages/classroom/message/message.wxss */
+.container {
+  padding-bottom: 120rpx;
+  position: relative;
+}
+.msgImg{
+  width: 100%;
+}

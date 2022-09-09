@@ -1,0 +1,16 @@
+/* pages/other/stussqd/stussqd.wxss */
+.ssqd_header{
+  text-align: center;
+  padding: 90rpx 50rpx 0rpx;
+  box-sizing: border-box;
+}
+.ssqd_center{
+  width: 100%;
+  height: 800rpx;
+  /* background-color:red; */
+  box-sizing: border-box;
+}
+.ssqd_center_canvas{
+  width: 100%;
+  height:400px;
+}

@@ -1,0 +1,54 @@
+<!--packageOne/create/createktbx/createktbx.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;">
+  <form report-submit="true">
+
+    <view class="column_title bg_white fixed_marginb">
+      <view class="title"><text>I</text>填写课堂表现信息</view>
+    </view>
+
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+        <view class="form_line">
+          <view class="key_name">活动主题<text>*</text></view>
+          <view class="value_box">
+            <input class="value_extend" placeholder='请输入活动主题' data-name="activityTitle" name="activityTitle" bindinput="bindinput" disabled="{{onlyWatchActivityInfo}}" value="{{dataForm.activityTitle}}"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+        <view class="form_line" data-name="type"  bindtap="{{onlyWatchActivityInfo?'':'toAddType'}}">
+          <view class="key_name">活动类型<text>*</text></view>
+          <view class="value_box">
+            <view class="value_extend overflow_hidden">{{typeName?typeName:'学员抢答'}}</view>
+            <view class="fun_btn"><view class="icon_wrapper"><text class="iconfont iconright" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+        <view class="form_line {{dataForm.type && dataForm.type == '1'?'':'hide'}}" >
+          <view class="key_name">抢答人数<text>*</text></view>
+          <view class="value_box">
+            <input class="value_extend" type="number" placeholder='请输入抢答人数' data-name="answerNum" name="answerNum" bindinput="bindinput" disabled="{{onlyWatchActivityInfo}}" value="{{dataForm.answerNum}}"></input>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <block wx:if="{{!onlyWatchActivityInfo}}">
+      <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+        <view class="bottom_btn " bindtap="cancel">取消</view>
+        <view class="bottom_btn bg_blue w_white" bindtap="save"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>保存</view>
+      </view>
+      <!--固定到底部 的  底部占位 -->
+      <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+    </block>
+    
+  </form>
+</view>
+
+<!--创建活动-->
+
+<!-- 下拉选择器begin -->
+<cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+<!-- 下拉选择器end -->

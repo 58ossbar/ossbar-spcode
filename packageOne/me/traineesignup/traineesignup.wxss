@@ -1,0 +1,37 @@
+/* pages/apply/applyInfo/applyInfo.wxss */
+.value_extend {
+  text-align: left;
+  /* //color: #353535; */
+}
+
+.value_box{
+  width: calc(100% - 200rpx);
+}
+.value_extend{
+  width: calc(100% - 80rpx);
+}
+
+.key_name text {
+  margin-left: 10rpx;
+  color: red;
+}
+.form_list .form_line .value_box input,
+.form_list .form_line .picker_name{
+  color: #353535;
+}
+
+.switch_line {
+  margin-bottom: 0;
+}
+
+.bao_ming_tips_wrap{
+  line-height: 1.8;
+}
+.bao_ming_tips_title{
+  display: flex;
+  align-items: center;
+}
+.bao_ming_tips_content{
+  padding-left: 30rpx;
+  box-sizing: border-box;
+}

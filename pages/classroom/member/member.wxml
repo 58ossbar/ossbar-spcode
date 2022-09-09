@@ -1,0 +1,108 @@
+<!--pages/other/member/member.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(128 + fixedBottom*2):'128'}}rpx;">
+  <view class="position_relative">
+    <view class="top_tool {{( (classroomState && classroomState == '3') || (!addMemberPerms && !delMemberPerms && !checkingMemberPerms) )?'top_tool_nojiahao':'top_tool_hasjiahao'}} ">
+      <view class="midd_tool">
+        <view class="search_box">
+          <input placeholder='输入搜索' name="traineeName" value="{{traineeName}}" bindinput="bindinput"></input>
+          <view class="search_logo" bindtap="searchInput">
+            <view class="icon_wrapper"><text class="iconfont iconsousuo" style="font-size:38rpx;"></text></view>
+          </view>
+        </view> 
+      </view>
+      <view hidden="{{(classroomState && classroomState == '3') || (!addMemberPerms) }}" class="side_tool" bindtap="toAddMember"><view class="icon_wrapper"><text class=iconfont icontianjiachengyuan w_white" style="font-size:44rpx;"></text></view></view>
+    </view>
+  </view>
+
+
+  <view class="fun_list fixed_marginb">
+    <view class="fun_line" bindtap="">
+      <view class="fun_logo">
+        <view class="icon_wrapper"><text class="iconfont iconcomponent" style="font-size:37rpx;"></text></view>
+      </view>
+      <view class="fun_title ">
+        班级名称
+        <text class="hide_single"><!-- 软件1812 -->{{classInfo.className}}</text>
+      </view>
+    </view>
+
+    <view class="fun_line" bindtap="popupBox">
+      <view class="fun_logo">
+        <view class="icon_wrapper"><text class="iconfont iconerweima" style="font-size:37rpx;"></text></view>
+      </view>
+      <view class="fun_title">
+        课堂二维码
+        <text  class="hide_single">邀请码：{{classInfo.invitationCode}}</text>
+        <view class="icon_wrapper"><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+      </view>
+    </view>
+
+  </view>
+  <!-- 成员列表begin -->
+  <view class="list bg_white"> <!--  {{item0.state && item0.state == 'Y'?'msgbox_two':''}} -->
+    <view class="msgbox  {{  (item0.state && item0.state == 'Y' && checkingMemberPerms)?('msgbox_change'+(scrollPermsNum-1)):('msgbox_change'+scrollPermsNum)  }} " wx:if="{{memberList && memberList.length>0}}" wx:for="{{memberList}}" wx:for-item="item0" wx:for-index="index0" wx:key="index0" bindtap="toPerShow" data-traineeid="{{item0.traineeId}}" data-currindex="{{index0}}" bindtouchstart="{{( classroomState && classroomState == '3')?'':'touchStart'}}" bindtouchmove="{{( classroomState && classroomState == '3')?'':'touchMove'}}">
+      <view class="member_setting_content {{item0.isTouchMove?'member_setting_touchmove':''}}">
+        <checkbox wx:if="{{isShowChaVis}}" data-currindex="{{index0}}" catchtap="checkboxClick"  value="{{index0}}" checked="{{item0.isChecked}}"></checkbox>
+        <view class="no position_relative overflow_hidden">{{index0+1}}
+          <view class="member_tag {{item0.state == 'N'?'state_goin':''}}" wx:if="{{item0.stateName}}">{{item0.stateName}}</view>
+        </view>
+        <view class="img_box ">
+          <view class="head_img bg_gray_light"><image src="{{item0.traineePic}}"></image></view>
+        </view>
+        <view class="cont_box overflow_hidden" >
+          <view>
+            <view class="trainee_name_box hide_single">
+              <text wx:if="{{item0.traineeName}}">{{item0.traineeName}}</text>
+              <text wx:else>暂无</text>
+            </view>
+            <view class=" font_s_g trainee_name_box hide_single">
+              <text wx:if="{{item0.jobNumber}}">{{item0.jobNumber}}</text>
+              <text wx:elif="{{item0.mobile}}">{{item0.mobile}}</text>
+              <text wx:else>暂无</text>
+            </view>
+          </view>
+          <!-- catchtap="settingHidden" data-currindex="{{index0}}" data-type="show" -->
+          <view class="icon_wrapper" ><text class="iconfont iconright" style="font-size:38rpx;"></text></view>
+        </view>
+      </view>
+      <view class="member_setting_wrapper font_s {{item0.isTouchMove?'member_setting_touchmove':''}}" hidden="{{!item0.isTouchMove}}">
+        <view class="bg_blue member_setting" data-currindex="{{index0}}" catchtap="assistantingMember" wx:if="{{ assistantingMemberPerms }}">{{item0.ifTa?'取消助教':'设助教'}}</view>
+        <view hidden="{{item0.state == 'Y'}}" class="bg_orange member_setting" data-currindex="{{index0}}" data-type="single" catchtap="checkingMember" wx:if="{{ checkingMemberPerms }}">审成员</view>
+        <view class="bg_purple_light member_setting" data-currindex="{{index0}}" catchtap="editMemberInfo" wx:if="{{ editInfoMemberPerms }}">修改信息</view>
+        <view class="state_goin member_setting" data-currindex="{{index0}}" data-type="single" catchtap="delMember" wx:if="{{ delMemberPerms }}">删除</view>
+      </view>
+    </view>
+  </view>
+  <!-- 成员列表end -->
+
+  
+  <view wx:if="{{isShowChaVis}}" class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+    <view class="bottom_btn " bindtap="checkAll">
+      <checkbox checked="{{isCheckedAll}}"></checkbox>全选
+    </view>
+    <view class="bottom_btn bg_blue w_white" bindtap="tapCheckBoxVisible">取消</view>
+    <view wx:if="{{ checkingMemberPerms }}" class="bottom_btn bg_orange w_white" data-type="all" bindtap="checkingMember">审批成员</view>
+    <view wx:if="{{ delMemberPerms }}"  class="bottom_btn bg_red w_white" data-type="all" bindtap="delMember">移出课堂</view>
+  </view>
+
+  <!-- 底部菜单栏 begin -->
+  <cb-class-room-bar wx:if="{{!isShowChaVis}}" isShowIndex="2"></cb-class-room-bar>
+  <!-- 底部菜单栏 end -->
+  
+  <!--弹窗-->
+  <view class="qrcode-mask " hidden="{{popupBox}}">
+    <view class="popup_box" >
+      <view class="side_box">
+        邀请码：<text class="w_blue">{{classInfo.invitationCode}}</text>
+        <view class="side_btn" style="right:10rpx;" bindtap="toSaveImage"><view class="icon_wrapper"><text class="iconfont iconfenxiang" style="font-size:38rpx;"></text></view></view>
+        <view class="side_btn" style="left:10rpx;" bindtap="popupBox"><view class="icon_wrapper"><text class="iconfont iconcha-circle" style="font-size:50rpx;"></text></view></view>
+      </view>
+      <view class="mid_box">
+        <view><image src="{{classInfo.qrCode}}" bindtap="toPreviewImage" ></image></view>
+      </view>
+      <view class="side_box hide_single">
+        班级：<text class="w_blue">{{classInfo.className}}</text>
+      </view>
+    </view>
+  </view>
+</view>

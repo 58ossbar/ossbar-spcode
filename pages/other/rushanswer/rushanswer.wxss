@@ -1,0 +1,149 @@
+/* pages/other/rushanswer/rushanswer.wxss */
+.container {
+  position: relative;
+}
+.answer_box {
+  width: 100vw;
+  height: 80vw;
+  text-align: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+.answer_box .sm {
+  margin-top: 80rpx;
+  display: block;
+}
+.answer_box image,
+.answer_box .icon_wrapper {
+  width: 36vw;
+  height: 36vw;
+  left: 50%;
+  margin-left: -18vw;
+  top:50%;
+  margin-top: -12vw;
+  position: absolute;
+}
+.cancel_btn {
+  width: auto;
+  line-height: 40rpx;
+  top:20rpx;
+  right: 20rpx;
+  position: absolute;
+}
+
+.bot_box {
+  padding-bottom: 80rpx; 
+  bottom:0;
+  position:absolute;
+}
+.bot_box text {
+  width:auto; height:80rpx; line-height:80rpx; padding: 0 20rpx; margin:0 auto;
+}
+
+.set_no {
+  display: flex;
+  flex-direction: row;
+  padding: 0 10rpx;
+}
+.set_no view {
+  width: calc((100vw - 120rpx) / 5);
+  height: calc((100vw - 120rpx) / 5);
+  text-align: center;
+  line-height: calc((100vw - 120rpx) / 5);
+  background-color: #efeef4;
+  box-sizing: border-box;
+  margin: 0 10rpx;
+}
+.set_no view.active {
+  color: #FFF;
+  background-color: #0033cc;
+}
+.bottom_btn {
+  width:calc(100% - 40rpx)!important;
+  margin-top: 80rpx;
+}
+
+
+
+.rush_answer_two_labels{
+  height: 120rpx;
+  text-align: center;
+  /* padding-top: 50rpx; */
+  box-sizing: border-box;
+}
+.rush_answer_two_labels .label_input_wrapper{
+  width: 100%;
+  height: 80rpx;
+  padding: 10rpx 20rpx;
+  background-color: #FFF;
+  box-sizing: border-box;
+}
+.rush_answer_two_labels .label_input_wrapper .label_input{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: left;
+}
+.rush_answer_two_labels .label_item2{
+  padding-top: 50rpx;
+  box-sizing: border-box;
+}
+.rush_answer_two_scroll{
+  height: calc(100vh - 120rpx - 100rpx);
+}
+.rush_answer_two_list_wrapper{
+  width: 100%;
+  height: 100%;
+  padding-top: 0rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.rush_answer_two_list_inner{
+  width: calc((100vw - 120rpx) / 4);
+  height:  calc(((100vw - 120rpx) / 4) + 70rpx);
+  margin: 20rpx 10rpx;
+  position: relative;
+}
+.rush_answer_two_list_inner .rush_answer_two_list_image {
+  width: calc(100% - 20rpx);
+  height: calc(((100vw - 120rpx) / 4) - 20rpx);
+  border-radius: 50%; 
+  background-color: #ccc;
+  overflow: hidden;
+  margin: 10rpx;
+
+  position: relative;
+}
+.rush_answer_two_list_inner .rush_answer_two_list_image .rush_answer_two_list_image_wenhao{
+  position: absolute;
+  top: 37%;
+  left: 42%;
+  font-weight: bold;
+  font-size: 30rpx;
+}
+.rush_answer_two_list_inner .rush_answer_two_list_name {
+  display: block;
+  text-align: center;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+}
+.rush_answer_two_btns{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rush_answer_stu_delbtn{
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

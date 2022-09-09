@@ -1,0 +1,13 @@
+/* pages/other/notice/notice.wxss */
+
+.form_list .form_line .key_name {
+  width: 130rpx;
+}
+.form_list .form_line:nth-child(2) .key_name {
+  border-bottom: #efeef4 solid 2rpx;
+}
+.form_list .form_line .value_box textarea {
+  width: calc(100% - 40rpx);
+  height: 600rpx;
+  margin: 10rpx auto;
+}

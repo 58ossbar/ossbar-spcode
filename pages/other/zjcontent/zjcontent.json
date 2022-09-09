@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "cb-activity-comm":"/components/activity-comm/activity-comm"
+  },
+  "navigationBarTitleText": "章节"
+}

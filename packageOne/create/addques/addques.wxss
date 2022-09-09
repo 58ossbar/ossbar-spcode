@@ -1,0 +1,146 @@
+/* packageOne/create/addques/addques.wxss */
+.container {
+  padding-bottom: 120rpx;
+  position: relative;
+}
+.ques_line {
+  width:100%;
+  overflow:hidden;
+  box-sizing:border-box;
+  /* 修改begin */
+  /* height:80rpx; */
+  padding: 0 25rpx;
+  /* 修改end */
+}
+.ques_items {
+  width:80rpx; 
+  height:80rpx;
+  line-height: 80rpx;
+  margin: 0;
+  float: left;
+  position: relative;
+}
+.ques_items .bg_line {
+  width: 100%;
+  height: 2rpx;
+  background-color: #666666;
+  display: block;
+  top:50%;
+  right: 0;
+  margin-top: -1rpx;
+  position: absolute;
+}
+/* 修改begin */
+.ques_line .ques_items:first-child{
+  margin-left: -20rpx;
+}
+/* 修改end */
+.ques_line .ques_items:nth-last-child(2) .bg_line {
+  width: 50%;
+  right: 50%;
+}
+.ques_line .ques_items:first-child .bg_line {
+  width: 50%;
+  right: 0;
+}
+
+.ques_line .ques_items_add .bg_line {
+  /* width: 20rpx;
+  left: 0; */
+  left: -50%;
+  right: inherit;
+}
+.ques_items .items_no {
+  width:40rpx;
+  height:40rpx;
+  text-align:center;
+  line-height:40rpx;
+  font-size:24rpx;
+  color:#FFF;
+  border-radius:50%;
+  background-color:#fd7512;
+  display:block;
+  top:50%;
+  left: 50%;
+  margin-top: -20rpx;
+  margin-left: -20rpx;
+  z-index: 1; 
+  position: absolute;
+}
+.ques_items image,
+.ques_items .icon_wrapper {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 10rpx;
+}
+
+.form_list {
+  margin-bottom: 20rpx;
+}
+
+.form_list .form_line .value_box textarea {
+  width: calc(100% - 40rpx);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.value_extend {
+  text-align: left;
+  color: #353535;
+}
+.form_list .form_line .value_box {
+  border-bottom: #efeef4 solid 2rpx!important;
+}
+
+.form_list .form_line .key_name {
+  width: auto;
+}
+
+.bottom_del {
+  width: 100%;
+  height: 102rpx;
+  text-align: center;
+  line-height: 100rpx;
+  box-sizing: border-box;
+  border-top: #efeef4 solid 2rpx; 
+  background-color: #FFF;
+  bottom: 0;
+  z-index: 99;
+  position: fixed;
+}
+.bottom_del .no_active {
+  width: auto;
+  position: absolute;
+  left: 20rpx;
+}
+.bottom_del .no_active text,
+.bottom_btnline .bottom_btn .bottom_del_tm {
+  width:40rpx;
+  height:40rpx;
+  border-radius:50%;
+  text-align:center;
+  line-height:40rpx;
+  font-size:24rpx;
+  color:#FFF;
+  background-color:#fd7512;
+  display: inline-block;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+.ques_items_icon{
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* disabled 后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+radio .wx-radio-input.wx-radio-input-disabled{
+  background: none!important;
+}
+
+.checkbox_code{
+  margin-right: 10rpx;
+}

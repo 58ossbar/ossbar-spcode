@@ -1,0 +1,128 @@
+/* pages/other/xqktbxend/xqktbxend.wxss */
+.list {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.msgbox {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding-top: 20rpx !important; 
+  padding-bottom:10rpx !important;
+  position: relative;
+}
+
+.msgbox .img_box {
+  text-align: center;
+  margin: 0 20rpx 0 30rpx;
+  position: relative;
+}
+.msgbox .img_box .head_img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.msgbox .cont_box {
+  flex: 1;
+  height: 80rpx;
+  padding-right: 20rpx!important;
+  padding-bottom: 10rpx!important;
+}
+
+/*  重写 checkbox 样式  */
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.all_checkbox .wx-checkbox-input{
+  margin-top: 0rpx;
+  margin-left: 0rpx;
+}
+.msgbox .trainee_name_box{
+  height: 40rpx;
+  line-height: 40rpx;
+  padding-right: 20rpx;
+}
+.msgbox .jobnum_time_box{
+  display: flex;
+  justify-content: space-between;
+}
+.iconright{
+  margin-left: 10rpx;
+}
+.trainee_history_paper_list{
+  /* padding-top: 10rpx; */
+  padding-left: 80rpx;
+  padding-right: 40rpx;
+  box-sizing: border-box;
+}
+.trainee_history_paper_list_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16rpx;
+  box-sizing: border-box;
+}
+.trainee_history_paper_endtime,
+.trainee_history_paper_list_item,
+.trainee_history_paper_begintime{
+  padding-top: 8rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  box-sizing: border-box;
+}
+.trainee_history_paper_begintime{
+  box-sizing: border-box;
+  padding-top: 16rpx;
+}
+.trainee_history_paper_endtime{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.papers_todetail_tag{
+  padding: 4rpx 20rpx;
+  border-radius: 20rpx 0 20rpx 0;
+  color: #fff;
+  opacity: 0.7;
+}
+
+.scroll_view_class{
+  height: calc(100vh - 80rpx - 100rpx);
+}
+.scroll_view_class_redo{
+  height: calc(100vh - 80rpx - 100rpx - 100rpx);
+}
+.medal_icon_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  /* position: relative; */
+
+
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  left: -40rpx;
+  top: -26rpx;
+  z-index: 20;
+}
+.medal_icon_wrapper .iconfont_svg{
+  font-size: 50rpx;
+  width: 100%;
+  height: 100%;
+  
+}
+.medal_icon_wrapper .medal_icon_label{
+  position: absolute;
+  top: 18rpx;
+}
+
+.bottom_btn checkbox{
+  margin-top: -20rpx;
+}

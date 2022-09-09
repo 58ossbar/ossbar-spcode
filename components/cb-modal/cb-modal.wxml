@@ -1,0 +1,34 @@
+<!--components/cb-modal/cb-modal.wxml-->
+<!-- 消息弹窗以及 创建分组、登录等弹窗页面 -->
+<view class="modal-mask {{isShow?'modal-show':''}}" bindtap='clickMask' catchtouchmove="{{true}}">
+
+  <view class="modal-body">
+    <scroll-view scroll-y="{{true}}" class="modal-scroll">
+      <view class="modal-title">{{title}}</view>
+      <view class="modal-content">
+        <block wx:if="{{isSlotContent}}">
+          <slot name="content"></slot>
+        </block>
+        <block wx:else>
+          <view class="modal-text" wx:if="{{modalType == 'text'}}">{{content}}</view>
+          <textarea wx:if="{{modalType == 'textarea' && isShow}}" show-confirm-bar="{{false}}" class="modal-textarea"  maxlength="3000" placeholder="{{title}}" bindinput="_bindinput" value="{{textareaValue}}"></textarea>
+        </block>
+      </view>
+    </scroll-view>
+    <view class="modal-footer">
+      <view class="cancel-btn" wx:if='{{showCancel}}' bindtap='cancel'>{{cancelText}}</view>
+      <view class="confirm-btn" wx:if='{{showConfirm}}' bindtap='confirm'>{{confirmText}}</view>
+      <block wx:if="{{showButton}}">
+        <view class="cancel-btn" bindtap='cancel'>{{cancelText}}</view>
+        
+        <block wx:if="{{buttonOpenType == 'getUserInfo'}}">
+          <button wx:if="{{canIUseGetUserProfile}}" class='dialog-btn' size="mini" bindtap="getUserProfile"> {{ confirmText }}</button>
+          <button wx:else  class='dialog-btn' size="mini" open-type="{{buttonOpenType}}" bindgetuserinfo='getUserInfo' catchtap="_closeModal" bindgetphonenumber="getPhoneNumber">{{ confirmText }}</button>
+        </block>
+        <button wx:else  class='dialog-btn' size="mini" open-type="{{buttonOpenType}}" bindgetuserinfo='getUserInfo' catchtap="_closeModal" bindgetphonenumber="getPhoneNumber">{{ confirmText }}</button>
+
+      </block>
+    </view>
+  </view>
+
+</view>

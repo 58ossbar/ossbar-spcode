@@ -1,0 +1,105 @@
+<!--报名pages/apply/applyInfo/applyInfo.wxml-->
+<view class="container" style="padding-bottom: {{fixedBottom >0?(containerBottom + fixedBottom*2):containerBottom}}rpx;">
+  <!-- catchtap="judgeIsToken" catchtouchstart="judgeIsToken" -->
+  <form report-submit="true" bindtap="judgeIsToken">
+    <view class="column_title bg_white fixed_marginb">
+        <view class="title"><text>I</text>填写信息</view>
+      </view>
+
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+        <view class="form_line">
+          <view class="key_name">真实姓名<text>*</text></view>
+          <view class="value_box ">
+            <input placeholder='我们期待更了解您' data-name="name" name="name" value="{{dataForm.name}}" bindinput="bindinput" disabled="{{!switchDisabled}}"></input>
+          </view>
+        </view>
+
+        <view class="form_line" data-name="education" bindtap="toAddEducation">
+          <view class="key_name">当前学历<text>*</text></view>
+          <view class="value_box">
+            <view class="value_extend overflow_hidden picker_name">{{educationList && educationList[educationIndex] && educationList[educationIndex].dictValue?educationList[educationIndex].dictValue:'请选择您的学历'}}</view>
+            <view class="fun_btn"><view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+        
+      </view>
+    </view>
+
+
+ 
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+
+        <view class="form_line" data-name="classId" bindtap="{{chooseClassId?toAddClassId:''}}">
+          <view class="key_name">选择班级<text>*</text></view>
+          <view class="value_box">
+            <view class="value_extend overflow_hidden picker_name">{{classIdList && classIdList[classIdIndex] && classIdList[classIdIndex].className?classIdList[classIdIndex].className:'请选择班级'}}</view>
+            <view class="fun_btn" wx:if="{{chooseClassId}}"><view class="icon_wrapper rotate90"><text class="iconfont iconright" style="font-size:36rpx;"></text></view></view>
+          </view>
+        </view>
+
+        <view class="form_line">
+          <view class="key_name">QQ 号码</view>
+          <view class="value_box ">
+            <input placeholder='我们尽快跟您联系，非必填' data-name="qq" name="qq" value="{{dataForm.qq}}" bindinput="bindinput" disabled="{{!switchDisabled}}"></input>
+          </view>
+        </view>
+        
+      </view>
+
+    </view>
+
+    <view class="bg_white fixed_marginb">
+      <view class="form_list">
+
+        <view class="form_line">
+          <view class="key_name">手机号码</view>
+          <view class="value_box ">
+            <input placeholder='我们尽快跟您联系，非必填' type="number" data-name="mobile" name="mobile" value="{{dataForm.mobile}}" bindinput="bindinput" disabled="{{!switchDisabled}}"></input>
+          </view>
+        </view>
+
+        <!-- <view class="form_line">
+          <view class="key_name">微信账号</view>
+          <view class="value_box ">
+            <input placeholder='我们尽快跟您联系，非必填' data-name="wechatNumber" name="wechatNumber" maxlength="30" value="{{dataForm.wechatNumber}}" bindinput="bindinput" disabled="{{!switchDisabled}}"></input>
+          </view>
+        </view> -->
+
+      </view>
+
+    </view>
+
+    <view class="switch_line bg_white" >
+      <view class="switch_name" ><text>I</text>是否预缴报名费</view>
+      <text>{{dataForm.isPay == 'Y'?'是':'否'}}</text>
+      <switch color="#0033cc" checked="{{dataForm.isPay == 'Y'}}" data-name="isPay" disabled="{{!switchDisabled}}"  bindchange="switchChange"></switch>
+    </view>
+
+    <view class="value_exp bao_ming_tips_wrap">
+      <!-- info_circle -->
+      <view class="bao_ming_tips_title"><icon type="info" color="#E6A23C" class="margin_right_10"  size="20"></icon>温馨提示：</view>
+      <view class="bao_ming_tips_content"><text>1、请保持手机畅通，我们会尽快与您联系\r\n2、预缴的报名费可抵学费\r\n3、预缴报名费可享受更多优惠，具体以线下门店政策为准</text></view>
+    </view>
+
+    <view class="bottom_btnline bg_white" style="bottom:{{fixedBottom}}px;">
+      <view class="bottom_btn " bindtap="cancel">取消</view>
+      <view class="bottom_btn bg_blue w_white" bindtap="save"><text class="iconfont icongou-fill-circle w_white" style="font-size:30rpx;"></text>马上报名</view>
+    </view>
+    <!--固定到底部 的  底部占位 -->
+    <view class="fixedBottomView" style="height:{{fixedBottom}}px;"></view>
+
+
+    <!-- 下拉选择器begin -->
+    <cb-picker isShowPicker="{{pickerDatas.isShowPicker}}" title="{{pickerDatas.titlePicker}}" listData="{{pickerDatas.listDataPicker}}" type="{{pickerDatas.typePicker}}" defaultData="{{pickerDatas.defaultDataPicker}}" keyWordOfShow="{{pickerDatas.keyWordOfShowPicker}}" keyIdOfShow="{{pickerDatas.keyIdOfShowPicker}}" bindclose="pickerClose"></cb-picker>
+    <!-- 下拉选择器end -->
+
+  </form>
+</view>
+
+  
+<!--授权按钮弹层begin-->
+<!-- title='微信授权' content='小程序申请获得你的公开信息(昵称，头像等)' showCancel="{{false}}" showConfirm="{{false}}"  -->
+<cb-modal show="{{modalIsShow}}"  showButton="{{true}}" buttonOpenType="{{buttonOpenType}}" bindgetUserInfo="getUserInfo" bindgetPhoneNumberBack="getPhoneNumberBack"></cb-modal>
+<!-- 授权按钮弹层end -->
