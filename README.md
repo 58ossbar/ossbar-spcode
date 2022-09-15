@@ -1,7 +1,39 @@
 # ossbar-spcode
 教学实训云平台小程序端
 
-开发工具：微信开发小程序专用工具https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html
+# 开发工具
+
+微信开发小程序专用工具https://developers.weixin.qq.com/miniprogram/dev/devtools/stable.html
+
+#  如何获取小程序appID?
+
+任意一款小程序：例如布道师高校版或开源吧商城
+
+## 手机获取方式
+
+1、微信中，点击进入需要查看AppID的小程序；
+
+2、点击小程序右上角三个点点，从底部出现弹窗；
+
+3、点击弹窗顶部小程序名称，进入小程序详情页；
+
+4、点击小程序详情页中的更多资料；
+
+5、更多资料的基本信息中，即可获取小程序AppID。
+
+## 电脑获取方式
+
+1、进入微信公众平台官网，登录账号；
+
+2、登录成功后，进入小程序的后台管理页面；
+
+3、点击导航栏 – 设置 – 基本设置，即可获取小程序AppID；
+
+以上便是内容介绍，希望可以为您带来帮助
+
+# 环境搭建
+
+详情见：https://www.ossbar.com/#/platformConsultingDetails?newsId=165
 
 # 功能列表
 
