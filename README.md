@@ -33,7 +33,7 @@
 
 # 环境搭建
 
-详情见：https://www.ossbar.com/#/platformConsultingDetails?newsId=165
+详情见：https://www.ossbar.com/#/platformConsultingDetails?newsId=170&filterType=&filterTypeName=
 
 # 功能列表
 
