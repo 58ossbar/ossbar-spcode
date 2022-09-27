@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -37,7 +37,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.11.0",
   "appid": "",
-  "projectname": "bds",
+  "projectname": "ossbar-spcode",
   "debugOptions": {
     "hidedInDevtools": []
   },
@@ -67,15 +67,7 @@
     },
     "miniprogram": {
       "current": -1,
-      "list": [
-        {
-          "id": 0,
-          "name": "pages/tabbar/home/home",
-          "pathName": "pages/tabbar/home/home",
-          "query": "t=01&c= 921162&e= 20200814151138",
-          "scene": null
-        }
-      ]
+      "list": []
     }
   }
 }

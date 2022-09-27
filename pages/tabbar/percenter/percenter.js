@@ -121,6 +121,7 @@ Page({
    * 我的收藏
    */
   toMyColl: function(event) {
+    return false
     if(!core.service.isCanInto()){
       let that = this;
       setTimeout(function(){
@@ -136,6 +137,7 @@ Page({
   },
   // 去报名
   toBaoMing: function(event) {
+    return false
     if(!core.service.isCanInto()){
       let that = this;
       setTimeout(function(){

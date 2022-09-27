@@ -38,8 +38,8 @@ module.exports ={
   containerBottom:106, //底部导航栏的高度，单位rpx
   myInfo:{},//数据库查出来的用户信息
   serverInfo: {//远程服务器信息
-    url: commUrl+"/sp/", // "https://frp.creatorblue.com/sp/", // 
-    imgUrl:  commUrl+"/sp", // "https://frp.creatorblue.com/sp", //
+    url: commUrl+"/ob-api/",
+    imgUrl:  commUrl+"/ob-api",
     tokenAPI: "wx/api/sessionid", //token服务接口名,可以和url组合成完整的URL，也可以是一个独立的URL，当为＂＂时，表示没有指定服务
     getUserAPI : "wx/api/trainee/getTraineeInfo",//用户信息服务接口名
     downladFilePath:"",//文件下载路径
